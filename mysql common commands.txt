@@ -22,3 +22,13 @@ Temporary : 	create table userDetails(username varchar(20) primary key ,email va
 );
 
 create table commonDetails(PtsForSection1 integer DEFAULT 5,PtsForSection2 integer DEFAULT 10,PtsForSection3 integer DEFAULT 15,MaximumAttemptsInSection1 integer default 5,MaximumAttemptsInSection2 integer default 5,MaximumAttemptsInSection3 integer default 5,TimeLimitInSection3 integer default 20,TotalTimeLimit integer default 2);
+
+
+delete from userDetails;
+delete from scoreTable;
+SESSION
+
+username
+contestEnded
+
+
