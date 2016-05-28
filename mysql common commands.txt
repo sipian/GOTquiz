@@ -1,0 +1,24 @@
+username = elan2016_harsh
+password = Password_1234
+database = elan2016_GOT
+
+command : 
+//create user
+Temporary : 	create user 'elan2016_harsh'@'%' IDENTIFIED BY 'Password_1234';
+		grant select,insert,update,delete,drop,create
+			on elan2016_GOT.*
+			to 'elan2016_harsh'@'%';
+Final : 	create user 'elan2016_harsh'@'%' IDENTIFIED BY 'Password_1234';
+		grant select,insert,update
+			on elan2016_GOT.*
+			to 'elan2016_harsh'@'%';
+
+//create table
+
+Temporary : 	create table userDetails(username varchar(20) primary key ,email varchar(30) not null,phone varchar(15) not null,college varchar(50) not null,password varchar(30) not null,timeBegin datetime , timeEnd datetime );
+
+
+		create table scoreTable(username varchar(20) primary key,points integer default 0,currentTime datetime,section1question1Solved varchar(5) default 'no',section1question1Count integer,section2question1Solved varchar(5) default 'no',section2question1Count integer,section2question2Solved varchar(5) default 'no',section2question2Count integer,section2question3Solved varchar(5) default 'no',section2question3Count integer,section2question4Solved varchar(5) default 'no',section2question4Count integer,section2question5Solved varchar(5) default 'no',section2question5Count integer,section3question1Solved varchar(5) default 'no',section3question1Count integer,section3question2Solved varchar(5) default 'no',section3question2Count integer,section3question3Solved varchar(5) default 'no',section3question3Count integer,section3question4Solved varchar(5) default 'no',section3question4Count integer,section3question5Solved varchar(5) default 'no',section3question5Count integer
+);
+
+create table commonDetails(PtsForSection1 integer DEFAULT 5,PtsForSection2 integer DEFAULT 10,PtsForSection3 integer DEFAULT 15,MaximumAttemptsInSection1 integer default 5,MaximumAttemptsInSection2 integer default 5,MaximumAttemptsInSection3 integer default 5,TimeLimitInSection3 integer default 20,TotalTimeLimit integer default 2);
