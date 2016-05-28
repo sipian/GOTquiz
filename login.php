@@ -44,7 +44,6 @@ session_start();
 
     //connecting to database details
     require "./connect.php";
-    //ChromePhp::log('Hello console!');
 
     // Check connection
     if (!$conn) {

@@ -82,43 +82,55 @@ function checkData()
     require "./connect.php";
 
     // Check connection
-    if (!$conn) {
+    if (!$conn) {//if 1
       die("Connection failed: " . mysqli_connect_error());
     }
-
-      if($_SERVER["REQUEST_METHOD"] == "POST"){
+    else{//else 1
+      if($_SERVER["REQUEST_METHOD"] == "POST"){//2 if form submitted
         $username = $_POST["username"];
         $email = $_POST["email"];
         $phone = $_POST["phone"];
         $college = $_POST["college"];
         $password = $_POST["password"];
         //checking if input is empty block begins
-          if(checkData() == true){
-                   $sql = "select username from userDetails where (username='".$username."' OR email='".$email."')";
-                  if($result = mysqli_query($conn, $sql)){
-                    if(mysqli_num_rows($result) != 0){
+          if(checkData() == true){//3 if conidtion check the data
+                   $sql = "select username from userDetails where (username=\"$username\" OR email=\"$email\")";
+                  if($result = mysqli_query($conn, $sql)){//4 - check if exists or not
+                    if(mysqli_num_rows($result) != 0){//5 - if exists success
                       $error = 'Either Username or Email already exists.';
                     }
-                    else{
+                    else{//else 5
                       $error = "";
                       $usernameError = "";
-                      $sql="insert into userDetails (username,email,phone,college,password) VALUES ('".$username."','".$email."','".$phone."','".$college."','".$password."');";
-                      $sql.="insert into scoreTable (username) VALUES('".$username."')";
-                       //ChromePhp::log($sql);
-                       if(mysqli_multi_query($conn,$sql) === TRUE){
-                         $_SESSION["username"]=$username;
-                         $_SESSION["contestEnded"]="no";
-                         header('Location: ./dashboard.php');
+                      $sql = "select MaximumAttemptsInSection1,MaximumAttemptsInSection2,MaximumAttemptsInSection3 from commonDetails";
+                      if($result=mysqli_query($conn,$sql)){//6 - if condition to get maximum attempts
+                        if(mysqli_num_rows($result)==1){//7 - if condition to get the values
+                          $row = mysqli_fetch_assoc($result);
+                          $MaximumAttemptsInSection1 = $row["MaximumAttemptsInSection1"];
+                          $MaximumAttemptsInSection2 = $row["MaximumAttemptsInSection2"];
+                          $MaximumAttemptsInSection3 = $row["MaximumAttemptsInSection3"];
+$sql="insert into userDetails (username,email,phone,college,password) VALUES (\"$username\",\"$email\",\"$phone\",\"$college\",\"$password\");";
+$sql.="insert into scoreTable (username,section1question1Count,section2question1Count,section2question2Count,section2question3Count,section2question4Count,section2question5Count,section3question1Count,section3question2Count,section3question3Count,section3question4Count,section3question5Count) VALUES (\"$username\",$MaximumAttemptsInSection1,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3)";
+                   if(mysqli_multi_query($conn,$sql) === TRUE){//8 - if condition check if insertion is true or not
+                             $_SESSION["username"]=$username;
+                             $_SESSION["contestEnded"]="no";
+                             header('Location: ./dashboard.php');
+                          }
+                          else//else 8
+                             header('Location: ./error1.php');
+                          }
+                          else//else 7
+                            header('Location: ./error2.php');
+                        }
+                        else//else 6
+                          header('Location: ./error3.php');
                       }
-                      else
-                         $error ='Error while sign in';
-                      }
-                  }
+                }//else 4
                   else
-                  $error ='Error while sign in';
-
-                }
-          }
+                  header('Location: ./error4.php');
+                }//else 3
+          }//else 2
+        }
            $conn->close();
       //checking if input is empty block ends
      ?>
@@ -135,11 +147,6 @@ function checkData()
            SIGN UP
          </title>
        </head>
-    <title>
-      GOT Sign Up
-    </title>
-    <link rel="stylesheet" href="./bootstrap-3.3.6/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
-  </head>
 <body style="background-image:url('./images/background.jpg');">
     <div class="container-fluid">
       <div class="a">&nbsp;</div>
@@ -167,7 +174,7 @@ function checkData()
     </div>
   </body>
   <!-- Javascript placed at end to load page faster-->
-   <!-- jQuery library -->
+  <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
   <!-- Latest compiled JavaScript -->
@@ -175,7 +182,7 @@ function checkData()
 
   <script type="text/javascript">
     $(function () {
-      $("#id").focus(function(){ $(".c").html(""); });
+      $("input").focus(function(){ $(".c").html(""); });
     });
   </script>
 </html>

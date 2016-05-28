@@ -3,7 +3,9 @@
 session_start();
 ?>
 <?php
-require "./checkLogin.php";
+// remove all session variables
+session_unset();
+http_response_code(404);
  ?>
 <!DOCTYPE html>
      <html>
@@ -12,37 +14,19 @@ require "./checkLogin.php";
          <meta charset="utf-8">
          <meta http-equiv="X-UA-Compatible" ss content="IE=edge">
          <meta name="viewport" content="width=device-width initial-scale=1">
-
          <!-- Latest compiled and minified CSS -->
          <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
     <title>
-      LOGIN
+      Error
     </title>
   </head>
   <body style="background-image:url('./images/background.jpg');">
     <a href="#"></a>
     <div class="container-fluid">
       <div class="a">&nbsp;</div>
-      <div class="b" id="demo">
-        <?php
-        if($variableToCheckLoggedIn == false)
-          header('Location: ./failTologin.php');
-          else{
-            $variable = "<div id='success'><h3>Welcome ".$_SESSION["username"]."</h3>RULES
-           <br>
-           <ul>
-             <li>BlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlah</li>
-             <li>BlahBlahBlahBlahBlahBlahBlah</li>
-             <li>BlahBlahBlahBlahBlahBlahBlahBlahBlahBlah</li>
-              <li>BlahBlahBlahBlahBlahBlahBlahBlahBlahBlah</li>
-               <li>BlahBlahBlahBlahBlahBlahBlahBlahBlahBlah</li>
-                <li>BlahBlahBlahBlahBlahBlahBlahBlahBlahBlah</li>
-           </ul>
-           <a href='./begin.php' class='btn btn-warning btn-lg'>BEGIN QUIZ</a></div>";
-           echo $variable;
-          }
-         ?>
+      <div class="b">
+        <h3><a href='./login.php'>You Are Not Logged In . Please Login First.</a></h3>
        </div>
       <div class="c"></div>
     </div>
