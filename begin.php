@@ -32,8 +32,10 @@ require "./checkLogin.php";
               else//else 4
                 header('Location: ./error3.php');
             }
-            else//else 3
+            else{
+              $_SESSION["timeEnd"]=$row["timeEnd"];
               header('Location: ./section1Question1.php');
+            }//else 3
           }
           else//else 2
             header('Location: ./error4.php');

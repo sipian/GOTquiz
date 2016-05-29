@@ -19,8 +19,8 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
       die("Connection failed: " . mysqli_connect_error());
     else
       {
-        $questionDetail = "section1question1";
-        $PtsForSection = "PtsForSection1";
+        $questionDetail = "section2question1";
+        $PtsForSection = "PtsForSection2";
       $sql = "select points , $questionDetail"."Count,$questionDetail"."Solved from scoreTable where username = \"".$_SESSION["username"]."\"";
       if($result=mysqli_query($conn,$sql)){// 2 if get count & Solved of question
         if(mysqli_num_rows($result) == 1){//3 if count == 1 for count & solved
@@ -156,8 +156,8 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
          </ol>
        </div>
        <div class="b">
-       <h3 id="questionname">Section1 Question1</h3>
-       <div class=""><img src="./images/section1question1.jpg" alt="/" style="width:25em;height:15em;"/></div>
+       <h3 id="questionname">Section2 Question1</h3>
+       <div class=""><img src="./images/section2question1.jpg" alt="/" style="width:25em;height:15em;"/></div>
        <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
          <br>
 

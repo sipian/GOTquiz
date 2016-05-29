@@ -1,0 +1,134 @@
+#holder {
+    position: relative;   /* leave as "relative" to keep timer centered on your
+                             page, or change to "absolute" then change the
+                             values of the "top" and "left" properties to
+                             position the timer */
+    top: 10px;            /* change to position the timer */
+    left: 0px;            /* change to position the timer; must also change
+                             position to "absolute" above */
+    width: 270px;
+    height: 60px;
+    border: none;
+    margin: -450px auto;
+}
+
+#title, #note {
+    color: lime;           /* this determines the color of the DAYS, HRS, MIN, SEC
+                              labels under the timer and the color of the note
+                              that displays after reaching the target date and
+                              time; if using the blue digital images, change to
+                              #52C6FF; for the red images, change to #FF6666; for
+                              the white images, change to #BBBBBB; for the yellow
+                              images, change to #FFFF00 */
+}
+
+#note {
+    position: relative;
+    top: 6px;
+    height: 20px;
+    width: 260px;
+    margin: 0 auto;
+    padding: 0px;
+    text-align: center;
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;    /* options are normal, bold, bolder, lighter */
+    font-style: normal;   /* options are normal or italic */
+    z-index: 1;
+}
+.body{
+  margin-top: -50px;
+}
+.title {
+    border: none;
+    padding: 0px;
+    margin-top: -10px;
+    margin-left: -10px;
+    width: 5px;
+    text-align: center;
+    font-family: Arial;
+    font-size: 10px;
+    font-weight: normal;    /* options are normal, bold, bolder, lighter */
+    background-color: transparent;
+}
+
+#timer {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    margin: 5px auto;
+    text-align: center;
+    width: 260px;
+    height: 38px;
+    border: none;
+    padding: 5px 35px 5px 3px;
+    background: #000000;    /* may change to another color, or to "transparent" */
+    border-radius: 20px;
+    box-shadow: 0 0 10px #000000; /* change to "none" if you don't want a shadow */
+}
+
+.a{
+  width: 100px;
+  float: left;
+  margin-top: 10%;
+
+}
+.b{
+  margin-left: 28%;
+  margin-top: 7.5%;
+}
+.c{
+   float: right;
+}
+span{
+  margin-left:15%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#questionname{
+  text-align: left;
+  margin-left:10%;
+ }
+ul{
+  list-style-type:disc;
+}
+li a {
+  background-color: #1A2C56;
+  color:#D1A683;
+  text-decoration: none;
+  padding:8%;
+}
+#totalTime{
+  text-align: center;
+}
+.ghost-button-thick-border {
+  display: inline-block;
+  width: 100px;
+  font-weight: bold;
+  padding: 3px;
+  color: #fff;
+  border: 3px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  transition: background-color 0.2s ease-out,
+              color 0.2s ease-out;
+}
+.ghost-button-thick-border:hover,
+.ghost-button-thick-border:active {
+  background-color: #fff;
+  color: #000;
+  transition: background-color 0.3s ease-in,
+              color 0.3s ease-in;
+}
+
+input{
+  border-radius: 12px;
+  border-color: #ff4d4d;
+  color:#ff4d4d;
+}
+input:focus{
+  background-color: #ff4d4d;
+  border-color: white;
+  color:white;
+}

@@ -4,6 +4,11 @@ session_start();
 ?>
 <?php
 require "./checkLogin.php";
+if($variableToCheckLoggedIn == true){
+  if($_SESSION["contestEnded"] == "yes")
+    header('Location: ./completedQuiz.php');
+}
+
  ?>
 <!DOCTYPE html>
      <html>

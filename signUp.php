@@ -117,17 +117,17 @@ $sql.="insert into scoreTable (username,section1question1Count,section2question1
                              header('Location: ./dashboard.php');
                           }
                           else//else 8
-                             header('Location: ./error1.php');
+                             header('Location: ./error.php');
                           }
                           else//else 7
-                            header('Location: ./error2.php');
+                            header('Location: ./error.php');
                         }
                         else//else 6
-                          header('Location: ./error3.php');
+                          header('Location: ./error.php');
                       }
                 }//else 4
                   else
-                  header('Location: ./error4.php');
+                  header('Location: ./error.php');
                 }//else 3
           }//else 2
         }
@@ -143,32 +143,32 @@ $sql.="insert into scoreTable (username,section1question1Count,section2question1
               <meta name="viewport" content="width=device-width initial-scale=1">
               <!-- Latest compiled and minified CSS -->
               <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+              <link rel="stylesheet" href="./timerForCompletion.css">
          <title>
            SIGN UP
          </title>
        </head>
 <body style="background-image:url('./images/background.jpg');">
-    <div class="container-fluid">
+    <div class="body">
       <div class="a">&nbsp;</div>
       <div class="b">
       <h3>Sign In</h3>
       <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-      <p>Username : </p><input type="text" name="username" id="id" class="col-xs-4" placeholder = "enter username" size="100" value="<?php echo $username;?>" required/><span><?php echo $usernameError;?></span>
+      <p style="margin-bottom:0px;margin-top:-5px;">Username : </p><input type="text" name="username" id="id" placeholder = "enter username" size="25" value="<?php echo $username;?>" required/><span><?php echo $usernameError;?></span>
       <br><br>
-      <p>Email : </p><input type="email" name="email" id="email" class="col-xs-4" placeholder = "enter email Id" size="100" value="<?php echo $email;?>" required/><span><?php echo $emailError;?></span>
+      <p style="margin-bottom:0px;margin-top:-5px;">Email : </p><input type="email" name="email" id="email"  placeholder = "enter email Id" size="25" value="<?php echo $email;?>" required/><span><?php echo $emailError;?></span>
       <br><br>
-      <p>Phone : </p><input type="number" name="phone" id="phone" class="col-xs-4" placeholder = "enter phone numer" size="100" value="<?php echo $phone;?>" required/><span><?php echo $phoneError;?></span>
+      <p style="margin-bottom:0px;margin-top:-5px;">Phone : </p><input type="number" name="phone" id="phone"  placeholder = "enter phone numer" size="25" min="1" value="<?php echo $phone;?>" required/><span><?php echo $phoneError;?></span>
       <br><br>
-      <p>College : </p><input type="text" name="college" id="college" class="col-xs-4" placeholder = "enter college" size="100" value="<?php echo $college;?>" required/><span><?php echo $collegeError;?></span>
+      <p style="margin-bottom:0px;margin-top:-5px;">College : </p><input type="text" name="college" id="college"  placeholder = "enter college" size="25" value="<?php echo $college;?>" required/><span><?php echo $collegeError;?></span>
       <br><br>
-      <p>Password : </p><input type="password" name="password" id="password" class="col-xs-4" placeholder = "enter password" size="100" value="<?php echo $password;?>" required/><span><?php echo $passwordError;?></span>
+      <p style="margin-bottom:0px;margin-top:-5px;">Password : </p><input type="password" name="password" id="password"  placeholder = "enter password" size="25" value="<?php echo $password;?>" required/><span><?php echo $passwordError;?></span>
       <br><br>
-      <p></p>
-      <button id="loginButton" type="submit" class="btn btn-warning btn-md">Sign In</button>
+       <button id="loginButton" type="submit" class="ghost-button-thick-border" style="margin-left:50px;">Sign In</button>
     </form>
         </div>
       <br>
-      <div class="c">
+      <div class="d" style="margin-left:230px;">
         <?php echo $error; ?>
       </div>
     </div>
@@ -178,7 +178,7 @@ $sql.="insert into scoreTable (username,section1question1Count,section2question1
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
   <!-- Latest compiled JavaScript -->
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
 
   <script type="text/javascript">
     $(function () {

@@ -55,7 +55,7 @@ session_start();
         $password = $_POST["password"];
         //checking if input is empty block begins
           if(checkData() == true){
-               $sql = "select username,email,password from userDetails where (email = '".$email."')";
+               $sql = "select username,email,password,quizCompleted,timeEnd from userDetails where (email = \"$email\")";
               ;
               if($result = mysqli_query($conn,$sql)){
                 if(mysqli_num_rows($result) == 0) {
@@ -70,7 +70,9 @@ session_start();
                         }
                         else{
                           $_SESSION["username"]=$row["username"];
-                          $_SESSION["contestEnded"]="no";
+                          $_SESSION["contestEnded"]=$row["quizCompleted"];
+                          if($row["timeEnd"] != NULL)
+                            $_SESSION["timeEnd"]=$row["timeEnd"];
                           header('Location: ./dashboard.php');
                         }
                       }
