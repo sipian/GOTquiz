@@ -26,7 +26,7 @@ http_response_code(404);
     <div class="container-fluid">
       <div class="a">&nbsp;</div>
       <div class="b">
-        <h3><a href='./login.php'>You Are Not Logged In . Please Login First.</a></h3>
+        <h3><a href='./index.php'>You Are Not Logged In . Please Login First.</a></h3>
        </div>
       <div class="c"></div>
     </div>

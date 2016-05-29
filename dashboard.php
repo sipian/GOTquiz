@@ -20,9 +20,10 @@ if($variableToCheckLoggedIn == true){
 
          <!-- Latest compiled and minified CSS -->
          <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+         <link rel="stylesheet" href="./timerForCompletion.css">
 
     <title>
-      LOGIN
+      Dashboard
     </title>
   </head>
   <body style="background-image:url('./images/background.jpg');">
@@ -37,14 +38,14 @@ if($variableToCheckLoggedIn == true){
             $variable = "<div id='success'><h3>Welcome ".$_SESSION["username"]."</h3>RULES
            <br>
            <ul>
-             <li>BlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlah</li>
-             <li>BlahBlahBlahBlahBlahBlahBlah</li>
-             <li>BlahBlahBlahBlahBlahBlahBlahBlahBlahBlah</li>
-              <li>BlahBlahBlahBlahBlahBlahBlahBlahBlahBlah</li>
-               <li>BlahBlahBlahBlahBlahBlahBlahBlahBlahBlah</li>
-                <li>BlahBlahBlahBlahBlahBlahBlahBlahBlahBlah</li>
+             <li>There are 3 Sections in the Quiz.  </li>
+             <li>Section 1 has 1 question of 5 points each<br>Section 2 has 5 questions of 10 points each<br>Section 3 has 5 question of 15 points each<br></li>
+             <li>In Section 1 & Section 2 to answer correctly you will have 5 chances only with no time boundations.</li>
+              <li>In Section 3 you will have 1 chance only within a time limit of 20sec.</li>
+               <li>If U answer incorrectly in all the chances for a question or the time limit exceeds it will not be considered in your points.</li>
+                <li>It is a 2 hour quiz.So do wrap it up within the given time.</li>
            </ul>
-           <a href='./begin.php' class='btn btn-warning btn-lg'>BEGIN QUIZ</a></div>";
+           <a href='./section1question1.php' class='btn btn-warning btn-lg'>START QUIZ</a></div>";
            echo $variable;
           }
          ?>

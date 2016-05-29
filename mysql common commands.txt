@@ -1,18 +1,20 @@
-username = elan2016_harsh
-password = Password_1234
-database = elan2016_GOT
+username = elanorg_harsh
+password = pAsSwOrD123@elan
+database = elanorg_2016_GOT
 
 command : 
 //create user
-Temporary : 	create user 'elan2016_harsh'@'%' IDENTIFIED BY 'Password_1234';
+Temporary : 	create user 'elanorg_harsh'@'%' IDENTIFIED BY 'pAsSwOrD123@elan';
 		grant select,insert,update,delete,drop,create
-			on elan2016_GOT.*
-			to 'elan2016_harsh'@'%';
-Final : 	create user 'elan2016_harsh'@'%' IDENTIFIED BY 'Password_1234';
+			on elanorg_2016_GOT.*
+			to 'elanorg_harsh'@'%';
+Final : 	create user 'elanorg_harsh'@'%' IDENTIFIED BY 'pAsSwOrD123@elan';
 		grant select,insert,update
-			on elan2016_GOT.*
-			to 'elan2016_harsh'@'%';
+			on elanorg_2016_GOT.*
+			to 'elanorg_harsh'@'%';
 
+create database elanorg_2016_GOT; 
+use elanorg_2016_GOT;
 //create table
 
 Temporary : 	create table userDetails(username varchar(20) primary key ,email varchar(30) not null,phone varchar(15) not null,college varchar(50) not null,password varchar(30) not null,timeBegin datetime , timeEnd datetime , quizCompleted varchar(50) default 'no');
@@ -39,5 +41,7 @@ SESSION
 
 username
 contestEnded
+timeEnded
+timeBegin
 
 

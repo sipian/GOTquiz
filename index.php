@@ -1,6 +1,7 @@
 <?php
 //starting the session
 session_start();
+
 ?>
 <?php
     //function to sanitize input
@@ -55,8 +56,8 @@ session_start();
         $password = $_POST["password"];
         //checking if input is empty block begins
           if(checkData() == true){
-               $sql = "select username,email,password,quizCompleted,timeEnd from userDetails where (email = \"$email\")";
-              ;
+               $sql = "select username,email,password,quizCompleted,timeEnd,timeBegin from userDetails where (email = \"$email\")";
+
               if($result = mysqli_query($conn,$sql)){
                 if(mysqli_num_rows($result) == 0) {
                   $emailError = "Entered email does not exist.";
@@ -73,16 +74,16 @@ session_start();
                           $_SESSION["contestEnded"]=$row["quizCompleted"];
                           if($row["timeEnd"] != NULL)
                             $_SESSION["timeEnd"]=$row["timeEnd"];
-                          header('Location: ./dashboard.php');
+                           header('Location: ./dashboard.php');
                         }
                       }
              }
               }
-              else{
-                $error="Error while logging in";
-
-              }
+              else
+                header('Location: ./error.php');
           }
+          else
+            $error="Invalid Input";
         }
           $conn->close();
       //checking if input is empty block ends
@@ -95,6 +96,8 @@ session_start();
          <meta name="viewport" content="width=device-width initial-scale=1">
          <!-- Latest compiled and minified CSS -->
          <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+         <link rel="stylesheet" href="./timerForCompletion.css">
+
     <title>
       LOGIN
     </title>
@@ -105,12 +108,12 @@ session_start();
       <div class="b">
       <h3>Login</h3>
       <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-      <p>Email : </p><input type="email" name="email" id="email" class="col-xs-4" placeholder = "enter email Id" size="100" value="<?php echo $email;?>" required/><span>&nbsp;&nbsp;<?php echo $emailError;?></span>
+      <p>Email : </p><input type="email" name="email" id="email" placeholder = "enter email Id" size="25" value="<?php echo $email;?>" required/><span>&nbsp;&nbsp;<?php echo $emailError;?></span>
       <br><br>
-      <p>Password : </p><input type="password" name="password" id="password" class="col-xs-4" placeholder = "enter password" size="100" value="" required/><span>&nbsp;&nbsp;<?php echo $passwordError;?></span>
+      <p>Password : </p><input type="password" name="password" id="password" placeholder = "enter password" size="25" value="" required/><span>&nbsp;&nbsp;<?php echo $passwordError;?></span>
       <br><br>
       <p></p>
-      <button id="loginButton" type="submit" class="btn btn-warning btn-md">Login</button>
+      <button id="loginButton" type="submit" class="ghost-button-thick-border">Login</button>
     </form>
     <br>
     <span>Forgot Password?</span>

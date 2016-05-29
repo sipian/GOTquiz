@@ -114,7 +114,8 @@ $sql.="insert into scoreTable (username,section1question1Count,section2question1
                    if(mysqli_multi_query($conn,$sql) === TRUE){//8 - if condition check if insertion is true or not
                              $_SESSION["username"]=$username;
                              $_SESSION["contestEnded"]="no";
-                             header('Location: ./dashboard.php');
+                             $_SESSION["timeEnd"] = NULL;
+                              header('Location: ./dashboard.php');
                           }
                           else//else 8
                              header('Location: ./error.php');

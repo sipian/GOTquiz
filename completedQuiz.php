@@ -3,10 +3,22 @@
 session_start();
 ?>
 <?php
-// remove all session variables
-session_unset();
-http_response_code(404);
- ?>
+require "./connect.php";
+// Check connection
+if (!$conn)
+  die("Connection failed: " . mysqli_connect_error());
+  else
+{
+  $sql = "update userDetails set quizCompleted = 'yes' where username = \"".$_SESSION["username"]."\"";
+  if(mysqli_query($conn,$sql)){
+  // remove all session variables
+  session_unset();
+  // destroy the session
+  session_destroy();
+}
+}
+?>
+
 <!DOCTYPE html>
      <html>
 
@@ -26,7 +38,7 @@ http_response_code(404);
     <div class="container-fluid">
       <div class="a">&nbsp;</div>
       <div class="b">
-        <h3>Quiz is Over.</h3>
+        <h3>Quiz is Over.Your Time Is Up.</h3>
        </div>
       <div class="c">&nbsp;</div>
     </div>
