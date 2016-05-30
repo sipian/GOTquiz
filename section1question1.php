@@ -120,12 +120,12 @@ $sql = "update userDetails set timeBegin = \"$Sqldate\" , timeEnd = \"$SqlEnddat
 if(mysqli_query($conn,$sql))
   $_SESSION["timeEnd"] = $SqlEnddate;
 else
-header('Location: ./error1.php');
+header('Location: ./error.php');
 }
 else
-  header('Location: ./error2.php');
+  header('Location: ./error.php');
 }
-else header('Location: ./error3.php');
+else header('Location: ./error.php');
 }//time is set
  $endTime = $_SESSION["timeEnd"];
 
@@ -144,7 +144,7 @@ else header('Location: ./error3.php');
           <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
           <link rel="stylesheet" href="./timerForCompletion.css">
       <title>
-       Section 1 Question 1
+       <?php echo $questionName; ?>
      </title>
    </head>
    <body onload="countdown(year,month,day,hour,minute)" style="background-image:url('./images/background.jpg');">
@@ -175,6 +175,7 @@ else header('Location: ./error3.php');
    <!-- Latest compiled JavaScript -->
    <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
    <script type="text/javascript">
+   $(".c").html("hello");
    document.getElementById("answer").focus();
         /*
        Change the items noted in light blue below to create your countdown target

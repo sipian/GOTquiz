@@ -34,7 +34,7 @@
            <!--<script type="text/javascript" src="./timerForCompletion.js"></script>-->
 
      <title>
-       Section 1 Question 1
+       LeaderBoard
      </title>
    </head>
    <body onload="countdown(year,month,day,hour,minute)" style="background-image:url('./images/background.jpg');">

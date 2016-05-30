@@ -20,10 +20,10 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
      $answerStatistic=$trialsLeft=$points=$error="";
         $questionName = "Section 3 Question 3";
         $questionDetail = "section3question3";
-
         $PtsForSection = "PtsForSection3";
         $flagForTimer = false;
-      $sql = "select points , $questionDetail"."Count,$questionDetail"."Solved from scoreTable where username = \"".$_SESSION["username"]."\"";
+        $flagForReload = "false";
+      $sql = "select points , $questionDetail"."Count,$questionDetail"."Solved,$questionDetail"."Visited from scoreTable where username = \"".$_SESSION["username"]."\"";
       if($result=mysqli_query($conn,$sql)){// 2 if get count & Solved of question
         if(mysqli_num_rows($result) == 1){//3 if count == 1 for count & solved
           $row = mysqli_fetch_assoc($result);
@@ -31,6 +31,18 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
           $solved = $row[$questionDetail."Solved"];
           $points = $row["points"];
           $trialsLeft = $count;
+          if($row[$questionDetail."Visited"] === 'no'){
+            $sql = "update scoreTable set $questionDetail"."Visited = 'yes' where username = \"".$_SESSION["username"]."\"";
+            if(mysqli_query($conn,$sql)){}
+            else header('Location: ./error.php');
+            $flagForReload = "true";
+          }
+          else{
+            $answerDisableVariable = "disabled";
+            $trialsLeft = 0;
+            $buttonDisableVariable = "disabled";
+            $flagForTimer = true;
+          }
           if($count == 0 && $solved == "no"){//"4 if chance & solved"
              $answerDisableVariable = "disabled";
              $buttonDisableVariable = "disabled";
@@ -61,7 +73,7 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
                           $answerDisableVariable = "disabled";
                           $buttonDisableVariable = "disabled";
                           $points = $points + $addendum;
-                          $trialsLeft = $trialsLeft - 1;
+                          $trialsLeft = 0;
                           $flagForTimer = true;
                         }
                         else
@@ -81,7 +93,7 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
                     if(mysqli_query($conn,$sql)){
                       $answerDisableVariable = "";
                       $buttonDisableVariable = "";
-                       $trialsLeft = $trialsLeft - 1;
+                       $trialsLeft = 0;
                        if($trialsLeft == 0){
                          $answerDisableVariable = "disabled";
                          $buttonDisableVariable = "disabled";
@@ -135,13 +147,12 @@ else header('Location: ./error.php');
  $sql = "select TimeLimitInSection3 from commonDetails";
  if($result=mysqli_query($conn,$sql)){
    if(mysqli_num_rows($result) == 1){
-     $TimeLimitInSection3 = mysqli_fetch_assoc($result)["TimeLimitInSection3"];
+      $TimeLimitInSection3 = mysqli_fetch_assoc($result)["TimeLimitInSection3"];
    }else header('Location: ./error.php');
  }else header('Location: ./error.php');
  $conn->close();
 }
  ?>
-
  <!DOCTYPE html>
       <html>
         <head>
@@ -154,7 +165,7 @@ else header('Location: ./error.php');
           <!--<script type="text/javascript" src="./timerForCompletion.js"></script>-->
 
      <title>
-       Section 3 Question 3
+       <?php echo $questionName; ?>
      </title>
    </head>
    <body onload="countdown(year,month,day,hour,minute)" style="background-image:url('./images/background.jpg');">
@@ -175,165 +186,176 @@ else header('Location: ./error.php');
      <span>Trials Left : <?php echo $trialsLeft; ?></span><br>
      <span>Points : <?php echo $points; ?></span>
      <h2 style="margin-top:-1px;">Time Remaining : <span id="3rdTimer" style="margin-left:20px;"><?php if($flagForTimer == false) echo $TimeLimitInSection3."seconds"; else echo "---"; ?></span></h2>
-
        </div>
         <div class="c"></div>
      </div>
    </body>
    <script type="text/javascript" src="./common.js"></script>
    <!-- jQuery library -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+   <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->
 
 
    <!-- Latest compiled JavaScript -->
    <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
    <script type="text/javascript">
-   document.getElementById("answer").focus();
 
-   function loadDoc() {
-     var xhttp = new XMLHttpRequest();
-     xhttp.onreadystatechange = function() {
-       if (xhttp.readyState == 4 && xhttp.status == 200) {
-         xmlText = xhttp.responseText;
-         if(xmlText == "failure")
-          window.location="error.php";
-        else if(xmlText == "success")
-          window.location=""+<?php echo '"'.$questionDetail.'"'; ?>+".php";
-         }
-        /*else if ( xhttp.status == 500) {
-           window.location="./error.php";
 
-         }*/
-        }
-        var link = "changeCountOf3rd.php?"+"question="+<?php echo '"'.$questionDetail.'"'; ?>+"&username="+<?php echo '"'.$_SESSION['username'].'"';?>;
-     xhttp.open("GET", link, true);
-     xhttp.send();
-   };
+   /*
+   Change the items noted in light blue below to create your countdown target
+   date and announcement once the target date and time are reached.
+   */
+   var note="Time Is Up";    /* -->Enter what you want the script to
+                                            display when the target date and time
+                                            are reached, limit to 25 characters */
 
-       var TimeLimitInSection3 = parseInt(<?php echo '"'.$TimeLimitInSection3.'"'; ?>) - 1;
-       var ls = <?php echo '"'.$flagForTimer.'"'; ?>;
-       if( ls == false){
-         var myVar = setInterval(function(){
-           document.getElementById("3rdTimer").innerHTML = TimeLimitInSection3+" seconds";
-           TimeLimitInSection3 = TimeLimitInSection3 - 1;
-           if(TimeLimitInSection3 == -1){
-             clearInterval(myVar);
-             loadDoc();
-           }
-         }, 1000);
+   var year=parseInt(<?php echo '"'.substr($endTime,0,4).'"' ?>);      /* -->Enter the count down target date YEAR */
+   var month=parseInt(<?php echo '"'.substr($endTime,5,2).'"' ?>);       /* -->Enter the count down target date MONTH */
+   var day=parseInt(<?php echo '"'.substr($endTime,8,2).'"' ?>);         /* -->Enter the count down target date DAY */
+   var hour=parseInt(<?php echo '"'.substr($endTime,11,2).'"' ?>);         /* -->Enter the count down target date HOUR (24 hour  clock) */
+   var minute=parseInt(<?php echo '"'.substr($endTime,14,2).'"' ?>);      /* -->Enter the count down target date MINUTE */
+   var tz=5.5;          /* -->Offset for your timezone in hours from UTC (see
+                             http://wwp.greenwichmeantime.com/index.htm to find
+                             the timezone offset for your location) */
+
+   //-->    DO NOT CHANGE THE CODE BELOW!    <--
+   d1 = new Image(); d1.src = "./images/1.png";
+   d2 = new Image(); d2.src = "./images/2.png";
+   d3 = new Image(); d3.src = "./images/3.png";
+   d4 = new Image(); d4.src = "./images/4.png";
+   d5 = new Image(); d5.src = "./images/5.png";
+   d6 = new Image(); d6.src = "./images/6.png";
+   d7 = new Image(); d7.src = "./images/7.png";
+   d8 = new Image(); d8.src = "./images/8.png";
+   d9 = new Image(); d9.src = "./images/9.png";
+   d0 = new Image(); d0.src = "./images/0.png";
+   bkgd = new Image(); bkgd.src = "./images/bkgd.gif";
+
+   var montharray=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+
+   function countdown(yr,m,d,hr,min){
+       theyear=yr;themonth=m;theday=d;thehour=hr;theminute=min;
+       var today=new Date();
+      var todayy=today.getYear();
+      if (todayy < 1000) {todayy+=1900;}
+      var todaym=today.getMonth();
+      var todayd=today.getDate();
+      var todayh=today.getHours();
+      var todaymin=today.getMinutes();
+      var todaysec=today.getSeconds();
+      var todaystring1=montharray[todaym]+" "+todayd+", "+todayy+" "+todayh+":"+todaymin+":"+todaysec;
+      var todaystring=Date.parse(todaystring1)+(tz*1000*60*60);
+      var futurestring1=(montharray[m-1]+" "+d+", "+yr+" "+hr+":"+min);
+      var futurestring=Date.parse(futurestring1)-(today.getTimezoneOffset()*(1000*60));
+      var dd=futurestring-todaystring;
+      var dday=Math.floor(dd/(60*60*1000*24)*1);
+      var dhour=Math.floor((dd%(60*60*1000*24))/(60*60*1000)*1);
+      var dmin=Math.floor(((dd%(60*60*1000*24))%(60*60*1000))/(60*1000)*1);
+      var dsec=Math.floor((((dd%(60*60*1000*24))%(60*60*1000))%(60*1000))/1000*1);
+       if(dday<=0&&dhour<=0&&dmin<=0&&dsec<=0){
+           document.getElementById('note').innerHTML=note;
+           document.getElementById('note').style.display="block";
+           document.getElementById('countdown').style.display="none";
+           clearTimeout(startTimer);
+           window.location="./completedQuiz.php";
+           return;
        }
-    /*
-     Change the items noted in light blue below to create your countdown target
-     date and announcement once the target date and time are reached.
-     */
-     var note="Time Is Up";    /* -->Enter what you want the script to
-                                              display when the target date and time
-                                              are reached, limit to 25 characters */
+       else {
+           document.getElementById('note').style.display="none";
+           document.getElementById('timer').style.display="block";
+           startTimer = setTimeout("countdown(theyear,themonth,theday,thehour,theminute)",500);
+       }
+       convert(dday,dhour,dmin,dsec);
+   }
 
-     var year=parseInt(<?php echo '"'.substr($endTime,0,4).'"' ?>);      /* -->Enter the count down target date YEAR */
-     var month=parseInt(<?php echo '"'.substr($endTime,5,2).'"' ?>);       /* -->Enter the count down target date MONTH */
-     var day=parseInt(<?php echo '"'.substr($endTime,8,2).'"' ?>);         /* -->Enter the count down target date DAY */
-     var hour=parseInt(<?php echo '"'.substr($endTime,11,2).'"' ?>);         /* -->Enter the count down target date HOUR (24 hour  clock) */
-     var minute=parseInt(<?php echo '"'.substr($endTime,14,2).'"' ?>);      /* -->Enter the count down target date MINUTE */
-     var tz=5.5;          /* -->Offset for your timezone in hours from UTC (see
-                               http://wwp.greenwichmeantime.com/index.htm to find
-                               the timezone offset for your location) */
+   function convert(d,h,m,s) {
+       if (!document.images) return;
+       if (d <= 9) {
+           document.images.day1.src = bkgd.src;
+           document.images.day2.src = bkgd.src;
+           document.images.day3.src = eval("d"+d+".src");
+       }
+       else if (d <= 99) {
+           document.images.day1.src = bkgd.src;
+           document.images.day2.src = eval("d"+Math.floor(d/10)+".src");
+           document.images.day3.src = eval("d"+(d%10)+".src");
+       }
+       else {
+           document.images.day1.src = eval("d"+Math.floor(d/100)+".src");
+           var day = d.toString();
+           day = day.substr(1,1);
+           day = parseInt(day);
+           document.images.day2.src = eval("d"+day+".src");
+           document.images.day3.src = eval("d"+(d%10)+".src");
+       }
+       if (h <= 9) {
+           document.images.h1.src = d0.src;
+           document.images.h2.src = eval("d"+h+".src");
+       }
+       else {
+           document.images.h1.src = eval("d"+Math.floor(h/10)+".src");
+           document.images.h2.src = eval("d"+(h%10)+".src");
+       }
+       if (m <= 9) {
+           document.images.m1.src = d0.src;
+           document.images.m2.src = eval("d"+m+".src");
+       }
+       else {
+           document.images.m1.src = eval("d"+Math.floor(m/10)+".src");
+           document.images.m2.src = eval("d"+(m%10)+".src");
+       }
+       if (s <= 9) {
+           document.images.s1.src = d0.src;
+           document.images.s2.src = eval("d"+s+".src");
+       }
+       else {
+           document.images.s1.src = eval("d"+Math.floor(s/10)+".src");
+           document.images.s2.src = eval("d"+(s%10)+".src");
+       }
+   }
+   //
 
-     //-->    DO NOT CHANGE THE CODE BELOW!    <--
-     d1 = new Image(); d1.src = "./images/1.png";
-     d2 = new Image(); d2.src = "./images/2.png";
-     d3 = new Image(); d3.src = "./images/3.png";
-     d4 = new Image(); d4.src = "./images/4.png";
-     d5 = new Image(); d5.src = "./images/5.png";
-     d6 = new Image(); d6.src = "./images/6.png";
-     d7 = new Image(); d7.src = "./images/7.png";
-     d8 = new Image(); d8.src = "./images/8.png";
-     d9 = new Image(); d9.src = "./images/9.png";
-     d0 = new Image(); d0.src = "./images/0.png";
-     bkgd = new Image(); bkgd.src = "./images/bkgd.gif";
+      function loadDoc() {
+       var xhttp = new XMLHttpRequest();
+       xhttp.onreadystatechange = function() {
+         if (xhttp.readyState == 4 && xhttp.status == 200) {
+           xmlText = xhttp.responseText;
+           if(xmlText == "failure")
+            window.location="error.php";
+          else if(xmlText == "success")
+            window.location=""+<?php echo '"'.$questionDetail.'"'; ?>+".php";
+           }
+          /*else if ( xhttp.status == 500) {
+             window.location="./error.php";
 
-     var montharray=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+           }*/
+          }
+      var link = "changeCountOf3rd.php?"+"question="+<?php echo '"'.$questionDetail.'"'; ?>+"&username="+<?php echo '"'.$_SESSION['username'].'"';?>;
+       xhttp.open("GET", link, true);
+       xhttp.send();
+     };
+     document.getElementById("answer").focus();
+     window.onbeforeunload = function(){
+      return "hello";
+    };
 
-     function countdown(yr,m,d,hr,min){
-         theyear=yr;themonth=m;theday=d;thehour=hr;theminute=min;
-         var today=new Date();
-        var todayy=today.getYear();
-        if (todayy < 1000) {todayy+=1900;}
-        var todaym=today.getMonth();
-        var todayd=today.getDate();
-        var todayh=today.getHours();
-        var todaymin=today.getMinutes();
-        var todaysec=today.getSeconds();
-        var todaystring1=montharray[todaym]+" "+todayd+", "+todayy+" "+todayh+":"+todaymin+":"+todaysec;
-        var todaystring=Date.parse(todaystring1)+(tz*1000*60*60);
-        var futurestring1=(montharray[m-1]+" "+d+", "+yr+" "+hr+":"+min);
-        var futurestring=Date.parse(futurestring1)-(today.getTimezoneOffset()*(1000*60));
-        var dd=futurestring-todaystring;
-        var dday=Math.floor(dd/(60*60*1000*24)*1);
-        var dhour=Math.floor((dd%(60*60*1000*24))/(60*60*1000)*1);
-        var dmin=Math.floor(((dd%(60*60*1000*24))%(60*60*1000))/(60*1000)*1);
-        var dsec=Math.floor((((dd%(60*60*1000*24))%(60*60*1000))%(60*1000))/1000*1);
-         if(dday<=0&&dhour<=0&&dmin<=0&&dsec<=0){
-             document.getElementById('note').innerHTML=note;
-             document.getElementById('note').style.display="block";
-             document.getElementById('countdown').style.display="none";
-             clearTimeout(startTimer);
-             window.location="./completedQuiz.php";
-             return;
-         }
-         else {
-             document.getElementById('note').style.display="none";
-             document.getElementById('timer').style.display="block";
-             startTimer = setTimeout("countdown(theyear,themonth,theday,thehour,theminute)",500);
-         }
-         convert(dday,dhour,dmin,dsec);
+     if(<?php echo '"'.$flagForReload.'"'; ?> === "false"){
+       window.onbeforeunload = undefined;
      }
 
-     function convert(d,h,m,s) {
-         if (!document.images) return;
-         if (d <= 9) {
-             document.images.day1.src = bkgd.src;
-             document.images.day2.src = bkgd.src;
-             document.images.day3.src = eval("d"+d+".src");
+     $('form').submit(function(){window.onbeforeunload = undefined;})
+         var TimeLimitInSection3 = parseInt(<?php echo '"'.$TimeLimitInSection3.'"'; ?>) - 1;
+         var ls = <?php echo '"'.$flagForTimer.'"'; ?>;
+         if( ls == false){
+           var myVar = setInterval(function(){
+             document.getElementById("3rdTimer").innerHTML = TimeLimitInSection3+" seconds";
+             TimeLimitInSection3 = TimeLimitInSection3 - 1;
+             if(TimeLimitInSection3 == -1){
+               clearInterval(myVar);
+               window.onbeforeunload = undefined;
+               loadDoc();
+             }
+           }, 1000);
          }
-         else if (d <= 99) {
-             document.images.day1.src = bkgd.src;
-             document.images.day2.src = eval("d"+Math.floor(d/10)+".src");
-             document.images.day3.src = eval("d"+(d%10)+".src");
-         }
-         else {
-             document.images.day1.src = eval("d"+Math.floor(d/100)+".src");
-             var day = d.toString();
-             day = day.substr(1,1);
-             day = parseInt(day);
-             document.images.day2.src = eval("d"+day+".src");
-             document.images.day3.src = eval("d"+(d%10)+".src");
-         }
-         if (h <= 9) {
-             document.images.h1.src = d0.src;
-             document.images.h2.src = eval("d"+h+".src");
-         }
-         else {
-             document.images.h1.src = eval("d"+Math.floor(h/10)+".src");
-             document.images.h2.src = eval("d"+(h%10)+".src");
-         }
-         if (m <= 9) {
-             document.images.m1.src = d0.src;
-             document.images.m2.src = eval("d"+m+".src");
-         }
-         else {
-             document.images.m1.src = eval("d"+Math.floor(m/10)+".src");
-             document.images.m2.src = eval("d"+(m%10)+".src");
-         }
-         if (s <= 9) {
-             document.images.s1.src = d0.src;
-             document.images.s2.src = eval("d"+s+".src");
-         }
-         else {
-             document.images.s1.src = eval("d"+Math.floor(s/10)+".src");
-             document.images.s2.src = eval("d"+(s%10)+".src");
-         }
-     }
 
-   </script>
+    </script>
  </html>

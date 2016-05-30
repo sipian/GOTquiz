@@ -1,9 +1,4 @@
 <?php
-//starting the session
-session_start();
-
-?>
-<?php
     //function to sanitize input
    function sanitizeInput($value)
    {
@@ -15,11 +10,7 @@ session_start();
    function checkData()
    {
      //check email
-     if(empty($GLOBALS['email'])){
-         $emailError = "Email is Required";
-         return false;
-         }
-    else if(!filter_var($GLOBALS['email'], FILTER_VALIDATE_EMAIL)){
+if(!filter_var($GLOBALS['email'], FILTER_VALIDATE_EMAIL)){
                $emailError = "Invalid Email Format";
                return false;
              }
@@ -56,31 +47,11 @@ session_start();
         $password = $_POST["password"];
         //checking if input is empty block begins
           if(checkData() == true){
-               $sql = "select username,email,password,quizCompleted,timeEnd,timeBegin from userDetails where (email = \"$email\")";
-
-              if($result = mysqli_query($conn,$sql)){
-                if(mysqli_num_rows($result) == 0) {
-                  $emailError = "Entered email does not exist.";
-                }
-                else{
-                  // output data of each row
-                  $emailError = "";
-                      while($row = mysqli_fetch_assoc($result)) {
-                        if(strcmp($row["password"] , $password) != 0){
-                          $passwordError = "Incorrect Password";
-                        }
-                        else{
-                          $_SESSION["username"]=$row["username"];
-                          $_SESSION["contestEnded"]=$row["quizCompleted"];
-                          if($row["timeEnd"] != NULL)
-                            $_SESSION["timeEnd"]=$row["timeEnd"];
-                           header('Location: ./dashboard.php');
-                        }
-                      }
-             }
-              }
-              else
-                header('Location: ./error.php');
+               $sql = "update userDetails set password = $password where (email = \"$email\")";
+              if(mysqli_query($conn,$sql))
+                $error = "Password successfully changed";
+                 else
+                  $error = "Some Error Occured.Please Try Again";
           }
           else
             $error="Invalid Input";
@@ -96,29 +67,26 @@ session_start();
          <meta name="viewport" content="width=device-width initial-scale=1">
          <!-- Latest compiled and minified CSS -->
          <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-         <link rel="stylesheet" href="./timerForCompletion.css">
-
-    <title>
-      HOME
+     <title>
+      Change Password
     </title>
   </head>
   <body style="background-image:url('./images/background.jpg');">
     <div class="container-fluid">
+      <pre>
+        <a href="./index.php">Game Of Thrones</a>
+      </pre>
       <div class="a">&nbsp;</div>
       <div class="b">
-      <h3>Login</h3>
+      <h3>Change Password</h3>
       <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-      <p>Email : </p><input type="email" name="email" id="email" placeholder = "enter email Id" size="25" value="<?php echo $email;?>" required/><span>&nbsp;&nbsp;<?php echo $emailError;?></span>
-      <br><br>
-      <p>Password : </p><input type="password" name="password" id="password" placeholder = "enter password" size="25" value="" required/><span>&nbsp;&nbsp;<?php echo $passwordError;?></span>
+<input type="email" name="email" value="<?php $_GET["email"]; ?>" hidden />
+      <p>New Password </p><input type="password" name="password" id="password" placeholder = "enter password" size="20" value="" required/><span>&nbsp;&nbsp;<?php echo $passwordError;?></span>
+      <p>Confirm Password : </p><input type="password" name="password" id="Cpassword" placeholder = "enter password" size="20" value="" required/><span>&nbsp;&nbsp;<?php echo $passwordError;?></span>
       <br><br>
       <p></p>
-      <button id="loginButton" type="submit" class="ghost-button-thick-border">Login</button>
+      <button id="loginButton" type="submit" class="ghost-button-thick-border">Change</button>
     </form>
-    <br>
-    <span><a href="./forgotPassword.php">Forgot Password?</a> </span>
-      <br>
-      <span><a href="./signUp.php">Not A Member Yet? Sign Up</a> </span>
       </div>
       <br>
       <div class="c"><?php echo $error; ?></div>
@@ -127,6 +95,14 @@ session_start();
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
-  <!-- Latest compiled JavaScript -->
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</html>
+  <script type="text/javascript">
+$(function(){
+  $("form").submit(function(e){
+    if(!( $("#password").val() != "" && $("#Cpassword").val()!= "" && $("#password").val().localCompare($("#Cpassword").val()) == 0 )){
+      $(".c").html("passwords do not match");
+      e.preventDefault();
+    }
+  })
+})
+  </script>
+ </html>

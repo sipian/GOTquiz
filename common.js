@@ -2,7 +2,7 @@ var x = document.getElementsByClassName("navbar navbar-default");
     x[0].innerHTML = `
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Game Of Thrones</a>
+        <a class="navbar-brand" href="/">Game Of Thrones</a>
       </div>
       <ul class="nav navbar-nav">
         <li><a href="./leaderBoard.php" target="_blank">LeaderBoard</a></li>

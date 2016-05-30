@@ -5,7 +5,6 @@ session_start();
 <?php
 // remove all session variables
 session_unset();
-http_response_code(404);
  ?>
 <!DOCTYPE html>
      <html>

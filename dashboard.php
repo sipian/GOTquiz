@@ -27,8 +27,20 @@ if($variableToCheckLoggedIn == true){
     </title>
   </head>
   <body style="background-image:url('./images/background.jpg');">
-    <a href="#"></a>
+
     <div class="container-fluid">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">Game Of Thrones</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="./leaderBoard.php" target="_blank">LeaderBoard</a></li>
+            <li><a href="./logout.php">Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+
       <div class="a">&nbsp;</div>
       <div class="b" id="demo">
         <?php

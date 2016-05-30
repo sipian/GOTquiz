@@ -16,6 +16,8 @@ if (!$conn)
   // destroy the session
   session_destroy();
 }
+else
+header('Location: ./error.php');
 }
 ?>
 
