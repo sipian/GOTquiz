@@ -133,4 +133,8 @@ input:focus{
   color:white;
 }
 
- 
+ #next{
+   width:  55px;
+   height: 55px;
+   margin-left: 25px;
+ };

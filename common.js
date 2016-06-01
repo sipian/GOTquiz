@@ -5,13 +5,14 @@ var x = document.getElementsByClassName("navbar navbar-default");
         <a class="navbar-brand" href="/">Game Of Thrones</a>
       </div>
       <ul class="nav navbar-nav">
+      <li><a href="./dashboard.php" target="_self">Dashboard</a></li>
         <li><a href="./leaderBoard.php" target="_blank">LeaderBoard</a></li>
         <li><a href="./logout.php">Logout</a></li>
       </ul>
     </div>
     `;
 
-  var x = document.getElementsByClassName("a");
+  /*var x = document.getElementsByClassName("a");
         x[0].innerHTML = `
         <ol>
           <li>
@@ -43,7 +44,7 @@ var x = document.getElementsByClassName("navbar navbar-default");
             </ul>
           </li>
         </ol>
-        `;
+        `;*/
 
         var x = document.getElementsByClassName("c");
               x[0].innerHTML = `

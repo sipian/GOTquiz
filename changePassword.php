@@ -80,7 +80,7 @@ if(!filter_var($GLOBALS['email'], FILTER_VALIDATE_EMAIL)){
       <div class="b">
       <h3>Change Password</h3>
       <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-<input type="email" name="email" value="<?php $_GET["email"]; ?>" hidden />
+<input type="email" name="email" value="<?php echo $_GET["email"]; ?>"  />
       <p>New Password </p><input type="password" name="password" id="password" placeholder = "enter password" size="20" value="" required/><span>&nbsp;&nbsp;<?php echo $passwordError;?></span>
       <p>Confirm Password : </p><input type="password" name="password" id="Cpassword" placeholder = "enter password" size="20" value="" required/><span>&nbsp;&nbsp;<?php echo $passwordError;?></span>
       <br><br>

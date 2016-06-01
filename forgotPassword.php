@@ -1,6 +1,5 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+
     //function to sanitize input
    function sanitizeInput($value)
    {
@@ -41,35 +40,48 @@ ini_set('display_errors', '1');
       if($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST["email"];
          //checking if input is empty block begins
-          if(checkData() == true){
+          if(checkData() == true) {
               $sql = "select username,email from userDetails where (email = \"$email\")";
               if($result = mysqli_query($conn,$sql)){
                 if(mysqli_num_rows($result) == 0) {
                   $error = "Entered email does not exist.";
                 }
                 else{
-                  $error="";
-                   $to = $email;
-                  $subject = "Change Password For Elan 2016 Game Of Thrones Quiz";
-                  $message = "
-                  Click on the link below to change Password<br><br>
-                  <a href='./changePassword.php?email=".$email."'>Change Your Password</a>
-                  ";
-                  // Always set content-type when sending HTML email
-                  $headers = "MIME-Version: 1.0" . "\r\n";
-                  $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                  // More headers
-                  $headers .= 'From: Website<harsh@elan.org.in>' . "\r\n";
-                  if(mail($to,$subject,$message,$headers))
-                    $error="Email has been sent to your email Id";
-                  else
-                  $error="Some Error Occured.<br>Try Once Again";
-              }
+
+   $to = $email;
+  $subject = "Change Password For Elan 2016 Game Of Thrones Quiz";
+
+  $message = "
+  <html>
+  <head>
+  <title>HTML email</title>
+  </head>
+  <body>
+  Click on the link below to change Password<br><br>
+  <a href='http://beta.got.elan.org.in/changePassword.php?email=".$email."' >Change Your Password</a>
+  </body>
+  </html>
+  ";
+
+  // Always set content-type when sending HTML email
+  $headers = "MIME-Version: 1.0" . "\r\n";
+  $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+  // More headers
+  $headers .= 'From: <harsh@elan.org.in>' . "\r\n";
+
+  mail($to,$subject,$message,$headers);
+if (mail($to,$subject,$message,$headers))
+    $error= 'Mail sent successfully.';
+ else
+    $error='Some error occured<br>Try again later. :(';
+
+
           }
-          else
-            $error="Some Error Occured.<br>Try Once Again";
-          }
-          else
+
+        }
+          else $error="Some error occured<br>Try again later. :(";
+        }else
             $error="Invalid input";
         }
           $conn->close();

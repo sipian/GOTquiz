@@ -1,7 +1,6 @@
 <?php
 //starting the session
 session_start();
-
 ?>
 <?php
     //function to sanitize input
@@ -115,9 +114,7 @@ session_start();
       <p></p>
       <button id="loginButton" type="submit" class="ghost-button-thick-border">Login</button>
     </form>
-    <br>
-    <span><a href="./forgotPassword.php">Forgot Password?</a> </span>
-      <br>
+        <br>
       <span><a href="./signUp.php">Not A Member Yet? Sign Up</a> </span>
       </div>
       <br>
