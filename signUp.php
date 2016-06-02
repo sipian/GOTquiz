@@ -5,6 +5,7 @@ session_start();
 <?php
 //All the functions userDetails
 //function to sanitize input
+require_once "./commonDetails.php";
 function sanitizeInput($value)
 {
   $value = trim($value);
@@ -102,13 +103,6 @@ function checkData()
                     else{//else 5
                       $error = "";
                       $usernameError = "";
-                      $sql = "select MaximumAttemptsInSection1,MaximumAttemptsInSection2,MaximumAttemptsInSection3 from commonDetails";
-                      if($result=mysqli_query($conn,$sql)){//6 - if condition to get maximum attempts
-                        if(mysqli_num_rows($result)==1){//7 - if condition to get the values
-                          $row = mysqli_fetch_assoc($result);
-                          $MaximumAttemptsInSection1 = $row["MaximumAttemptsInSection1"];
-                          $MaximumAttemptsInSection2 = $row["MaximumAttemptsInSection2"];
-                          $MaximumAttemptsInSection3 = $row["MaximumAttemptsInSection3"];
 $sql="insert into userDetails (username,email,phone,college,password) VALUES (\"$username\",\"$email\",\"$phone\",\"$college\",\"$password\");";
 $sql.="insert into scoreTable (username,section1question1Count,section2question1Count,section2question2Count,section2question3Count,section2question4Count,section2question5Count,section3question1Count,section3question2Count,section3question3Count,section3question4Count,section3question5Count) VALUES (\"$username\",$MaximumAttemptsInSection1,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3)";
                    if(mysqli_multi_query($conn,$sql) === TRUE){//8 - if condition check if insertion is true or not
@@ -116,21 +110,11 @@ $sql.="insert into scoreTable (username,section1question1Count,section2question1
                              $_SESSION["contestEnded"]="no";
                              $_SESSION["timeEnd"] = NULL;
                               header('Location: ./dashboard.php');
-                          }
-                          else//else 8
-                             header('Location: ./error.php');
-                          }
-                          else//else 7
-                            header('Location: ./error.php');
-                        }
-                        else//else 6
-                          header('Location: ./error.php');
+                          }else header('Location: ./error.php');
                       }
-                }//else 4
-                  else
-                  header('Location: ./error.php');
-                }//else 3
-          }//else 2
+                }else  header('Location: ./error.php');
+                }
+          }
         }
            $conn->close();
       //checking if input is empty block ends
@@ -153,23 +137,23 @@ $sql.="insert into scoreTable (username,section1question1Count,section2question1
     <div class="body">
       <div class="a">&nbsp;</div>
       <div class="b">
-      <h3>Sign In</h3>
+      <h3 style="color:#ff9933;">Sign In</h3>
       <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-      <p style="margin-bottom:0px;margin-top:-5px;">Username : </p><input type="text" name="username" id="id" placeholder = "enter username" size="25" value="<?php echo $username;?>" required/><span><?php echo $usernameError;?></span>
+      <p style="margin-bottom:0px;margin-top:-5px;color:#99ff66;">Username : </p><input type="text" name="username" id="id" placeholder = "enter username" size="25" value="<?php echo $username;?>" required/><span><?php echo $usernameError;?></span>
       <br><br>
-      <p style="margin-bottom:0px;margin-top:-5px;">Email : </p><input type="email" name="email" id="email"  placeholder = "enter email Id" size="25" value="<?php echo $email;?>" required/><span><?php echo $emailError;?></span>
+      <p style="margin-bottom:0px;margin-top:-5px;color:#99ff66;">Email : </p><input type="email" name="email" id="email"  placeholder = "enter email Id" size="25" value="<?php echo $email;?>" required/><span><?php echo $emailError;?></span>
       <br><br>
-      <p style="margin-bottom:0px;margin-top:-5px;">Phone : </p><input type="number" name="phone" id="phone"  placeholder = "enter phone numer" size="25" min="1" value="<?php echo $phone;?>" required/><span><?php echo $phoneError;?></span>
+      <p style="margin-bottom:0px;margin-top:-5px;color:#99ff66;">Phone : </p><input type="number" name="phone" id="phone"  placeholder = "enter phone numer" size="25" min="1" value="<?php echo $phone;?>" required/><span><?php echo $phoneError;?></span>
       <br><br>
-      <p style="margin-bottom:0px;margin-top:-5px;">College : </p><input type="text" name="college" id="college"  placeholder = "enter college" size="25" value="<?php echo $college;?>" required/><span><?php echo $collegeError;?></span>
+      <p style="margin-bottom:0px;margin-top:-5px;color:#99ff66;">College : </p><input type="text" name="college" id="college"  placeholder = "enter college" size="25" value="<?php echo $college;?>" required/><span><?php echo $collegeError;?></span>
       <br><br>
-      <p style="margin-bottom:0px;margin-top:-5px;">Password : </p><input type="password" name="password" id="password"  placeholder = "enter password" size="25" value="<?php echo $password;?>" required/><span><?php echo $passwordError;?></span>
+      <p style="margin-bottom:0px;margin-top:-5px;color:#99ff66;">Password : </p><input type="password" name="password" id="password"  placeholder = "enter password" size="25" value="<?php echo $password;?>" required/><span><?php echo $passwordError;?></span>
       <br><br>
-       <button id="loginButton" type="submit" class="ghost-button-thick-border" style="margin-left:50px;">Sign In</button>
+       <button id="loginButton" type="submit" class="btn btn-warning btn-md" style="margin-left:50px;">Sign In</button>
     </form>
         </div>
       <br>
-      <div class="d" style="margin-left:230px;">
+      <div class="d" style="margin-left:230px; color: #1affff;">
         <?php echo $error; ?>
       </div>
     </div>

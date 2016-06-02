@@ -1,16 +1,18 @@
-var x = document.getElementsByClassName("navbar navbar-default");
+var x = document.getElementsByClassName("navigation");
     x[0].innerHTML = `
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/">Game Of Thrones</a>
-      </div>
-      <ul class="nav navbar-nav">
-      <li><a href="./dashboard.php" target="_self">Dashboard</a></li>
-        <li><a href="./leaderBoard.php" target="_blank">LeaderBoard</a></li>
-        <li><a href="./logout.php">Logout</a></li>
-      </ul>
+    <nav class="navbar navbar-inverse">
+    <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="./index.php">Game Of Thrones</a>
+       <ul class="nav navbar-nav">
+          <li><a href="./leaderBoard.php" target="_blank">LeaderBoard</a></li>
+        <li><a href="./rules.php" target="_blank">Rules</a></li>
+        <li><a href="https://www.facebook.com/groups/elan.iit.hyderabad/" target="_blank">Forum</a></li>
+       </ul>
     </div>
+    </nav>
     `;
+
 
   /*var x = document.getElementsByClassName("a");
         x[0].innerHTML = `

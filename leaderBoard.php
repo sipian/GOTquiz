@@ -31,34 +31,35 @@
           <meta name="viewport" content="width=device-width initial-scale=1">
           <!-- Latest compiled and minified CSS -->
           <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-           <!--<script type="text/javascript" src="./timerForCompletion.js"></script>-->
 
      <title>
        LeaderBoard
      </title>
    </head>
    <body onload="countdown(year,month,day,hour,minute)" style="background-image:url('./images/background.jpg');">
-     <pre id = "name">Game Of Thrones</pre>
-      <div class="body">
-       <div class="a"></div>
-       <div class="b">
-       <h3 id="leaderboard">LEADERBOARD</h3>
-       <table>
-         <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Rank</th>
-        <th>Username</th>
-        <th>Points</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php echo $leaderboard; ?>
-    </tbody>
-  </table>
+       <div class="body">
+        <div class="navigation"></div>
+        <div class="container">
+          <div class="a"></div>
+          <div class="b">
+          <h3 id="leaderboard" style="color:#99ff66; text-align:center;">LEADERBOARD</h3>
+          <table>
+            <table class="table table-bordered table-condensed table-hover">
+          <thead style="color:#ff0066; ">
+          <tr>
+           <th align=right>Rank</th>
+           <th>Username</th>
+           <th>Points</th>
+          </tr>
+          </thead>
+          <tbody style="color:#1affff;">
+          <?php echo $leaderboard; ?>
+          </tbody>
+          </table>
+           </div>
         </div>
-        <div class="c"></div>
-     </div>
+
+      </div>
    </body>
 
    <!-- jQuery library -->
@@ -66,5 +67,7 @@
 
    <!-- Latest compiled JavaScript -->
    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="./common.js"></script>
+
 
  </html>

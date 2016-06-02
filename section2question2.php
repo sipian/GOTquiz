@@ -20,7 +20,8 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
      $answerStatistic="--";$trialsLeft=$points=$error=$nextButton="";
         $questionName = 'Section 2 Question 2';
         $questionDetail = 'section2question2';
-        $solution = $section2question1Answer;
+        $nextquestionDetail = 'section2question3';
+        $solution = $section2question2Answer;
         $buttonColor = "btn btn-primary btn-md";
         $sql = "select points , $questionDetail"."Count,$questionDetail"."Solved from scoreTable where username = \"".$_SESSION["username"]."\"";
         if($result=mysqli_query($conn,$sql)){// 2 if get count & Solved of question
@@ -29,19 +30,21 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
           $trialsLeft = $row[$questionDetail."Count"];
           $solved = $row[$questionDetail."Solved"];
           $points = $row['points'];
-           if($trialsLeft == 0 && $solved == 'no'){//"4 if chance & solved"
+          if($_SESSION["section2"] == 'yes')  header('Location: ./dashboard.php');
+
+          else if($trialsLeft == 0 && $solved == 'no'){//"4 if chance & solved"
              $answerDisableVariable = 'disabled';
              $buttonDisableVariable = 'disabled';
              $answerStatistic = 'Wrong';
              $buttonColor = "btn btn-danger btn-md";
-             $nextButton = '<a href="./section2question3.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+             $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
            }
            else if($solved == "yes"){//"4 if chance & solved"
              $answerDisableVariable = 'disabled';
              $buttonDisableVariable = 'disabled';
               $answerStatistic = 'Correct';
               $buttonColor = "btn btn-success btn-md";
-              $nextButton = '<a href="./section2question3.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+              $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
             }
           else{//else 4
             if($_SERVER["REQUEST_METHOD"] == "POST"){//5 if form submitted
@@ -55,7 +58,7 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
                           $points = $points + $PtsForSection2;
                           $trialsLeft = $trialsLeft - 1;
                           $buttonColor = "btn btn-success btn-md";
-                          $nextButton = '<a href="./section2question3.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+                          $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
                         }
                         else
                           header('Location: ./error.php');
@@ -71,7 +74,7 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
                        if($trialsLeft == 0){
                          $answerDisableVariable = "disabled";
                          $buttonDisableVariable = "disabled";
-                         $nextButton = '<a href="./section2question3.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+                         $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
                        }
                     }
                     else
@@ -105,7 +108,7 @@ require_once './findingEndingTime.php';
      </title>
    </head>
    <body onload="countdown(year,month,day,hour,minute)" style="background-image:url('./images/background.jpg');">
-     <nav class="navbar navbar-default"></nav>
+     <div class="navigation"></div>
      <div class="body">
        <div class="a"></div>
        <div class="b">
@@ -121,9 +124,12 @@ require_once './findingEndingTime.php';
         </div>
       </form>
      <br>
+     <div class="data">
       <span>Answer Status : <?php echo $answerStatistic; ?></span><br>
      <span>Trials Left : <?php echo $trialsLeft; ?></span><br>
-     <span>Current Score : <?php echo $points; ?></span>
+     <span>Current Score : <?php echo $points; ?></span><br>
+     <span>Points of this Question : <?php echo $PtsForSection2; ?> </span><br>
+   </div>
        </div>
         <div class="c"></div>
      </div>
@@ -134,6 +140,7 @@ require_once './findingEndingTime.php';
    <!-- Latest compiled JavaScript -->
    <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
    <script type="text/javascript">
-         <?php require_once "./timer.php"; ?>
+    document.getElementById("answer").focus();
+        <?php require_once "./timer.php"; ?>
    </script>
  </html>

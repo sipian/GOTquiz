@@ -38,11 +38,11 @@ header('Location: ./error.php');
     </title>
   </head>
   <body style="background-image:url('./images/background.jpg');">
-    <a href="#"></a>
+    <div class="navigation"></div>
     <div class="container-fluid">
       <div class="a">&nbsp;</div>
       <div class="b">
-        <h3>Quiz is Over.Your Time Is Up.</h3>
+        <h3 style="color:#ff9933;">Quiz is Over.Your Time Is Up.</h3>
        </div>
       <div class="c">&nbsp;</div>
     </div>

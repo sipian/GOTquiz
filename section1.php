@@ -15,9 +15,12 @@ if($variableToCheckLoggedIn == false)
     $sql = "select section1 from scoreTable where username = \"".$_SESSION["username"]."\"";
     if($result=mysqli_query($conn,$sql)){
       if(mysqli_num_rows($result) == 1){
-        if(mysqli_fetch_assoc($result)["section1"] == "yes")
+        if(mysqli_fetch_assoc($result)["section1"] == "yes"){
+          $_SESSION["section1"]="yes";
           header('Location: ./dashboard.php');
+        }
         else{
+          $_SESSION["section1"]="no";
           $sql = "update scoreTable set section1 = 'yes' where username = \"".$_SESSION["username"]."\"";
           if(mysqli_query($conn,$sql))
             header('Location: ./section1question1.php');

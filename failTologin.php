@@ -21,11 +21,11 @@ session_unset();
     </title>
   </head>
   <body style="background-image:url('./images/background.jpg');">
-    <a href="#"></a>
+    <div class="navigation"></div>
     <div class="container-fluid">
       <div class="a">&nbsp;</div>
       <div class="b">
-        <h3><a href='./index.php'>You Are Not Logged In . Please Login First.</a></h3>
+        <h3><a href='./index.php' style="color:#ff9933;">You Are Not Logged In . Please Login First.</a></h3>
        </div>
       <div class="c"></div>
     </div>

@@ -102,17 +102,18 @@ session_start();
     </title>
   </head>
   <body style="background-image:url('./images/background.jpg');">
+    <div class="navigation"></div>
     <div class="container-fluid">
       <div class="a">&nbsp;</div>
       <div class="b">
-      <h3>Login</h3>
+      <h3 style='color:#ff9933;'>Login</h3>
       <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-      <p>Email : </p><input type="email" name="email" id="email" placeholder = "enter email Id" size="25" value="<?php echo $email;?>" required/><span>&nbsp;&nbsp;<?php echo $emailError;?></span>
+      <p style="color:#99ff66;">Email : </p><input type="email" name="email" id="email" placeholder = "enter email Id" size="25" value="<?php echo $email;?>" required/><span>&nbsp;&nbsp;<?php echo $emailError;?></span>
       <br><br>
-      <p>Password : </p><input type="password" name="password" id="password" placeholder = "enter password" size="25" value="" required/><span>&nbsp;&nbsp;<?php echo $passwordError;?></span>
+      <p style="color:#99ff66;">Password : </p><input type="password" name="password" id="password" placeholder = "enter password" size="25" value="" required/><span>&nbsp;&nbsp;<?php echo $passwordError;?></span>
       <br><br>
       <p></p>
-      <button id="loginButton" type="submit" class="ghost-button-thick-border">Login</button>
+      <button id="loginButton" type="submit" class="btn btn-warning btn-md">Login</button>
     </form>
         <br>
       <span><a href="./signUp.php">Not A Member Yet? Sign Up</a> </span>

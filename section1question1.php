@@ -20,30 +20,30 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
         $answerStatistic="--";$trialsLeft=$points=$error=$nextButton="";
         $questionName = 'Section 1 Question 1';
         $questionDetail = 'section1question1';
+        $nextquestionDetail = 'dashboard';
         $solution = $section1question1Answer;
         $buttonColor = "btn btn-primary btn-md";
-        $sql = "select points , $questionDetail"."Count,$questionDetail"."Solved , section1 from scoreTable where username = \"".$_SESSION["username"]."\"";
+        $sql = "select points , $questionDetail"."Count,$questionDetail"."Solved from scoreTable where username = \"".$_SESSION["username"]."\"";
         if($result=mysqli_query($conn,$sql)){// 2 if get count & Solved of question
         if(mysqli_num_rows($result) == 1){//3 if count == 1 for count & solved
           $row = mysqli_fetch_assoc($result);
           $trialsLeft = $row[$questionDetail."Count"];
           $solved = $row[$questionDetail."Solved"];
           $points = $row['points'];
-          if($row["section1"] == 'yes')
-            header('Location: ./dasbboard.php');
-           if($trialsLeft == 0 && $solved == 'no'){//"4 if chance & solved"
+          if($_SESSION["section1"] == 'yes')  header('Location: ./dashboard.php');
+           else if($trialsLeft == 0 && $solved == 'no'){//"4 if chance & solved"
              $answerDisableVariable = 'disabled';
              $buttonDisableVariable = 'disabled';
              $answerStatistic = 'Wrong';
              $buttonColor = "btn btn-danger btn-md";
-             $nextButton = '<a href="./dashboard.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+             $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
            }
            else if($solved == "yes"){//"4 if chance & solved"
              $answerDisableVariable = 'disabled';
              $buttonDisableVariable = 'disabled';
               $answerStatistic = 'Correct';
               $buttonColor = "btn btn-success btn-md";
-              $nextButton = '<a href="./dashboard.php""><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+              $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
             }
           else{//else 4
             if($_SERVER["REQUEST_METHOD"] == "POST"){//5 if form submitted
@@ -57,10 +57,9 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
                           $points = $points + $PtsForSection1;
                           $trialsLeft = $trialsLeft - 1;
                           $buttonColor = "btn btn-success btn-md";
-                          $nextButton = '<a href="./dashboard.php""><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+                          $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
                         }
-                        else
-                          header('Location: ./error.php');
+                        else  header('Location: ./error.php');
                   }
                   else{//else 8
                     $answerStatistic = "Wrong";
@@ -73,20 +72,15 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
                        if($trialsLeft == 0){
                          $answerDisableVariable = "disabled";
                          $buttonDisableVariable = "disabled";
-                         $nextButton = '<a href="./dashboard.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+                         $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
                        }
                     }
-                    else
-                      header('Location: ./error.php');
+                    else  header('Location: ./error.php');
                   }
           }
         }
-      }
-      else//3 else
-        header('Location: ./error.php');
-      }
-      else//2 else
-      header('Location: ./error.php');
+      }else header('Location: ./error.php');
+      }else header('Location: ./error.php');
 }
 require_once './findingEndingTime.php';
  $endTime = $_SESSION["timeEnd"];
@@ -107,7 +101,7 @@ require_once './findingEndingTime.php';
      </title>
    </head>
    <body onload="countdown(year,month,day,hour,minute)" style="background-image:url('./images/background.jpg');">
-     <nav class="navbar navbar-default"></nav>
+     <div class="navigation"></div>
      <div class="body">
        <div class="a"></div>
        <div class="b">
@@ -123,9 +117,13 @@ require_once './findingEndingTime.php';
         </div>
       </form>
      <br>
-      <span>Answer Status : <?php echo $answerStatistic; ?></span><br>
-     <span>Trials Left : <?php echo $trialsLeft; ?></span><br>
-     <span>Current Score : <?php echo $points; ?></span>
+     <div class="data">
+       <span>Answer Status : <?php echo $answerStatistic; ?></span><br>
+      <span>Trials Left : <?php echo $trialsLeft; ?></span><br>
+      <span>Points of this Question : <?php echo $PtsForSection1; ?> </span><br>
+      <span>Current Score : <?php echo $points; ?></span><br>
+     </div>
+
        </div>
         <div class="c"></div>
      </div>
