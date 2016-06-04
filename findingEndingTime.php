@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL ^ E_WARNING);
+
 if($_SESSION["timeEnd"] == NULL){
 $date1 = date_create(null,timezone_open("Asia/Calcutta"));
 $Sqldate=date_format($date1,"Y-m-d H:i:s");

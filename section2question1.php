@@ -1,5 +1,7 @@
 <?php
+error_reporting(E_ALL ^ E_WARNING);
 session_start();
+
 ?>
 <?php
 require_once './checkLogin.php';
@@ -22,6 +24,10 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
         $questionDetail = 'section2question1';
         $nextquestionDetail = 'section2question2';
         $solution = $section2question1Answer;
+        $answerDisableVariable="";
+        $buttonDisableVariable="";
+        $nextButton="";
+        $buttonTitle="";
         $buttonColor = "btn btn-default btn-md";
         $sql = "select points , $questionDetail"."Count,$questionDetail"."Solved  from scoreTable where username = \"".$_SESSION["username"]."\"";
         if($result=mysqli_query($conn,$sql)){// 2 if get count & Solved of question
@@ -35,6 +41,7 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
              $answerDisableVariable = 'disabled';
              $buttonDisableVariable = 'disabled';
              $answerStatistic = 'Wrong';
+             $buttonTitle = "Your all trials are up.Proceed to next question.";
              $buttonColor = "btn btn-danger btn-md";
              $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
            }
@@ -42,6 +49,7 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
              $answerDisableVariable = 'disabled';
              $buttonDisableVariable = 'disabled';
               $answerStatistic = 'Correct';
+              $buttonTitle = "You have answered correctly.Proceed to the next question.";
               $buttonColor = "btn btn-success btn-md";
               $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
             }
@@ -55,6 +63,7 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
                           $answerDisableVariable = "disabled";
                           $buttonDisableVariable = "disabled";
                           $points = $points + $PtsForSection2;
+                          $buttonTitle = "You have answered correctly.Proceed to the next question.";
                           $trialsLeft = $trialsLeft - 1;
                           $buttonColor = "btn btn-success btn-md";
                           $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
@@ -69,6 +78,7 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
                       $answerDisableVariable = "";
                       $buttonDisableVariable = "";
                       $buttonColor = "btn btn-danger btn-md";
+                      $buttonTitle = "You Entered Wrong Answer.Try Again.";
                        $trialsLeft = $trialsLeft - 1;
                        if($trialsLeft == 0){
                          $answerDisableVariable = "disabled";
@@ -101,7 +111,7 @@ require_once './findingEndingTime.php';
           <meta name="viewport" content="width=device-width initial-scale=1">
           <link rel='shortcut icon' href='./images/elan.jpg' type='image/x-icon'/ >
           <!-- Latest compiled and minified CSS -->
-          <link rel="stylesheet" href="./css/bootstrap.min.css">
+          <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
           <link rel="stylesheet" href="./css/question.css">
       <title>
        <?php echo $questionName; ?>
@@ -128,7 +138,7 @@ require_once './findingEndingTime.php';
         <input type="answer" name="answer" id="answer"  placeholder = "enter answer here" size="25" <?php echo $answerDisableVariable;?> required/>
         <br><br>
         <div class="">
-<button id="loginButton" type="submit" class="<?php echo $buttonColor;?>" <?php echo $buttonDisableVariable;?> > SUBMIT </button>
+          <button id="loginButton" type="submit" class="<?php echo $buttonColor;?>" <?php echo $buttonDisableVariable;?> title="<?php echo $buttonTitle;?>"> SUBMIT </button>
 <?php echo $nextButton; ?>
         </div>
       </form>
@@ -140,10 +150,6 @@ require_once './findingEndingTime.php';
      </div>
     </body>
    <script type="text/javascript" src="./javascript/common.js"></script>
-   <!-- jQuery library -->
-   <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->
-   <!-- Latest compiled JavaScript -->
-   <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
    <script type="text/javascript">
    document.getElementById("answer").focus();
          <?php require_once "./timer.php"; ?>
@@ -164,4 +170,20 @@ require_once './findingEndingTime.php';
         };
         document.getElementById('forfeit').onclick=function(){loadDoc();};
    </script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+   <!-- jQuery local fallback -->
+   <script>window.jQuery || document.write('<script src="./javascript/jquery.min.js"><\/script>')</script>
+   <!-- Bootstrap JS CDN -->
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+   <!-- Bootstrap JS local fallback -->
+   <script>if(typeof($.fn.modal) === 'undefined') {document.write('<script src="./javascript/bootstrap.min.js"><\/script>')}</script>
+
+   <!-- Bootstrap CSS local fallback -->
+    <script>
+      $(document).ready(function() {
+      var bodyColor = $('body').css('color');
+      if(bodyColor != 'rgb(51, 51, 51)') {
+      $("head").prepend('<link rel="stylesheet" href="./css/bootstrap.min.css">');
+    }});
+    </script>
  </html>

@@ -1,5 +1,9 @@
 <?php
+session_start();
+
 require "./checkLogin.php";
+error_reporting(E_ALL ^ E_WARNING);
+
 if($variableToCheckLoggedIn == false)
   header('Location: ./failTologin.php');
   else if($_SESSION["contestEnded"] == "yes")

@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL ^ E_WARNING);
+
 //include './ChromePhp.php';
 $servername = "localhost";
 $user = "elanorg_harsh";

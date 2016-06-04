@@ -1,9 +1,15 @@
-var x = document.getElementsByClassName("navigation");
+
+
+
+
+
+
+        var x = document.getElementsByClassName("navigation");
             x[0].innerHTML = `
             <nav class="navbar navbar-inverse">
             <div class="container">
             <div class="navbar-header">
-              <a class="navbar-brand" href="#" title="Link To The Dashboard Has Been Disabled So You cannot go back to dashboard unless you complete this section">GAME OF THRONES</a>
+              <a class="navbar-brand" href="#" title="back to home page">Game Of Thrones</a>
                <ul class="nav navbar-nav">
                   <li title="view leaderboard"> <a href="./leaderBoard.php" target="_blank" >LeaderBoard</a></li>
                 <li title="view rules"><a href="./rules.php" target="_blank" >Rules</a></li>

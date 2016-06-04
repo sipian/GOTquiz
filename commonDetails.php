@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL ^ E_WARNING);
+
 $PtsForSection1 = 25;
 $PtsForSection2 = 5;
 $PtsForSection3 = 10;

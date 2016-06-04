@@ -7,7 +7,7 @@
         <nav class="navbar navbar-inverse">
         <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="./dashboard.php" title="back to dashboard">Game Of Thrones</a>
+          <a class="navbar-brand" href="./dashboard.php" title="Visit dashboard">GAME OF THRONES</a>
            <ul class="nav navbar-nav">
               <li title="view leaderboard"> <a href="./leaderBoard.php" target="_blank" >LeaderBoard</a></li>
             <li title="view rules"><a href="./rules.php" target="_blank" >Rules</a></li>

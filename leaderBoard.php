@@ -1,5 +1,6 @@
 
 <?php
+error_reporting(E_ALL ^ E_WARNING);
 
     require "./connect.php";
     // Check connection
@@ -41,7 +42,7 @@
 
    <!-- Styles -->
 
-   <link rel="stylesheet" href="./css/bootstrap.min.css">
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
  </head>
 
@@ -78,4 +79,21 @@
  	  </div>
    </div>
  </body>
- </html>
+ <!-- jQuery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<!-- jQuery local fallback -->
+<script>window.jQuery || document.write('<script src="./javascript/jquery.min.js"><\/script>')</script>
+<!-- Bootstrap JS CDN -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<!-- Bootstrap JS local fallback -->
+<script>if(typeof($.fn.modal) === 'undefined') {document.write('<script src="./javascript/bootstrap.min.js"><\/script>')}</script>
+
+<!-- Bootstrap CSS local fallback -->
+ <script>
+   $(document).ready(function() {
+   var bodyColor = $('body').css('color');
+   if(bodyColor != 'rgb(51, 51, 51)') {
+   $("head").prepend('<link rel="stylesheet" href="./css/bootstrap.min.css">');
+ }});
+ </script>
+</html>

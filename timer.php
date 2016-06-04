@@ -1,3 +1,4 @@
+<?php error_reporting(E_ALL ^ E_WARNING); ?>
 
 /*
 Change the items noted in light blue below to create your countdown target

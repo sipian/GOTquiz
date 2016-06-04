@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL ^ E_WARNING);
+
     //function to sanitize input
    function sanitizeInput($value)
    {

@@ -23,6 +23,7 @@
 
  </html>
  <?php
+ error_reporting(E_ALL ^ E_WARNING);
 
      require "./connect.php";
      // Check connection
@@ -43,15 +44,15 @@
          }
          if(stripos($sql,"scoreTable") !== false){
            if($result=mysqli_query($conn,$sql)){
-echo "username\tpoints\tcurrentTime\tsection1\tsection2\tsection3\tsection1question1Solved\tsection1question1Count\tsection2question1Solved\tsection2question1Count\tsection2question2Solved\tsection2question2Count\tsection2question3Solved\tsection2question3Count\tsection2question4Solved\tsection2question4Count\tsection2question5Solved\tsection2question5Count\tsection3question1Solved\tsection3question1Count\tsection3question2Solved\tsection3question2Count\tsection3question3Solved\tsection3question3Count\tsection3question4Solved\tsection3question4Count\tsection3question5Solved\tsection3question5Count\t<br>";
+echo "username\tpoints\tcurrentTime\tsection1\tsection2\tsection3\tsection1question1Solved\tsection1question1Count\tsection2question1Solved\tsection2question1Count\tsection2question2Solved\tsection2question2Count\tsection2question3Solved\tsection2question3Count\tsection2question4Solved\tsection2question4Count\tsection2question5Solved\tsection2question5Count\tsection3question1Solved\tsection3question1Count\tsection3question1Time\tsection3question2Solved\tsection3question2Count\tsection3question2Time\tsection3question3Solved\tsection3question3Count\tsection3question3Time\tsection3question4Solved\tsection3question4Count\tsection3question4Time\tsection3question5Solved\tsection3question5Count\tsection3question5Time<br>";
              while($row=mysqli_fetch_assoc($result)){
- echo $row["username"]."\t".$row["points"]."\t".$row["currentTime"]."\t".$row["section1"]."\t".$row["section2"]."\t".$row["section3"]."\t".$row["section1question1Solved"]."\t".$row["section1question1Count"]."\t".$row["section2question1Solved"]."\t".$row["section2question1Count"]."\t".$row["section2question2Solved"]."\t".$row["section2question2Count"]."\t".$row["section2question3Solved"]."\t".$row["section2question3Count"]."\t".$row["section2question4Solved"]."\t".$row["section2question4Count"]."\t".$row["section2question5Solved"]."\t".$row["section2question5Count"]."\t".$row["section3question1Solved"]."\t".$row["section3question1Count"]."\t".$row["section3question1Time"]."\t".$row["section3question2Solved"]."\t".$row["section3question2Count"]."\t".$row["section3question3Solved"]."\t".$row["section3question3Count"]."\t".$row["section3question4Solved"]."\t".$row["section3question4Count"]."\t".$row["section3question5Solved"]."\t".$row["section3question5Count"]."\t<br>";
+ echo $row["username"]."\t".$row["points"]."\t".$row["currentTime"]."\t".$row["section1"]."\t".$row["section2"]."\t".$row["section3"]."\t".$row["section1question1Solved"]."\t".$row["section1question1Count"]."\t".$row["section2question1Solved"]."\t".$row["section2question1Count"]."\t".$row["section2question2Solved"]."\t".$row["section2question2Count"]."\t".$row["section2question3Solved"]."\t".$row["section2question3Count"]."\t".$row["section2question4Solved"]."\t".$row["section2question4Count"]."\t".$row["section2question5Solved"]."\t".$row["section2question5Count"]."\t".$row["section3question1Solved"]."\t".$row["section3question1Count"]."\t".$row["section3question1Time"]."\t".$row["section3question2Solved"]."\t".$row["section3question2Count"]."\t".$row["section3question2Time"]."\t".$row["section3question3Solved"]."\t".$row["section3question3Count"]."\t".$row["section3question3Time"]."\t".$row["section3question4Solved"]."\t".$row["section3question4Count"]."\t".$row["section3question4Time"]."\t".$row["section3question5Solved"]."\t".$row["section3question5Count"]."\t".$row["section3question5Time"]."\t<br>";
              }
            }else echo "error2";
        }
        }
-         else if(mysqli_multi_query($conn,$sql))
-           echo success;
+         else if(mysqli_query($conn,$sql))
+           echo "success";
          else
            echo "failure";
        }

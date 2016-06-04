@@ -205,7 +205,7 @@ input{
       background-color: #e6e6e6;
   }
 
-  .btn.btn-success {
+  .btn-success {
       border: 1px solid #33cc33;
       color: #33cc33;
       background-color: transparent;
@@ -216,5 +216,5 @@ input{
       border: 1px solid #33cc33;
       outline: 0;
       color: #33cc33;
-      background-color: #ffffff;
+      background-color: #e6e6e6;
   }
