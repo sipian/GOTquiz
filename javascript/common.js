@@ -1,13 +1,15 @@
+
 var x = document.getElementsByClassName("navigation");
     x[0].innerHTML = `
     <nav class="navbar navbar-inverse">
     <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="./index.php">Game Of Thrones</a>
+      <a class="navbar-brand" href="./index.php" title="back to home page">Game Of Thrones</a>
        <ul class="nav navbar-nav">
-          <li><a href="./leaderBoard.php" target="_blank">LeaderBoard</a></li>
-        <li><a href="./rules.php" target="_blank">Rules</a></li>
-        <li><a href="https://www.facebook.com/groups/elan.iit.hyderabad/" target="_blank">Forum</a></li>
+          <li title="view leaderboard"> <a href="./leaderBoard.php" target="_blank" >LeaderBoard</a></li>
+        <li title="view rules"><a href="./rules.php" target="_blank" >Rules</a></li>
+        <li  title="visit forum"><a href="https://www.facebook.com/groups/elan.iit.hyderabad/" target="_blank">Forum</a></li>
+        <li  title="logout"><a href="./logout.php" target="_self">Logout</a></li>
        </ul>
     </div>
     </nav>
@@ -51,7 +53,7 @@ var x = document.getElementsByClassName("navigation");
         var x = document.getElementsByClassName("c");
               x[0].innerHTML = `
               <div id="holder">
-                <h3 id="totalTime">Time Left</h3>
+                <h3 id="totalTime">TIME LEFT</h3>
                 <div id="timer">
                     <div id="note"></div>
                     <div id="countdown">

@@ -93,38 +93,38 @@ session_start();
          <meta charset="utf-8">
          <meta http-equiv="X-UA-Compatible" ss content="IE=edge">
          <meta name="viewport" content="width=device-width initial-scale=1">
+         <link rel='shortcut icon' href='./images/elan.jpg' type='image/x-icon'/ >
          <!-- Latest compiled and minified CSS -->
-         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-         <link rel="stylesheet" href="./timerForCompletion.css">
+         <link rel="stylesheet" href="./css/bootstrap.min.css">
+         <link rel="stylesheet" href="./css/index.css">
 
     <title>
       HOME
     </title>
   </head>
   <body style="background-image:url('./images/background.jpg');">
-    <div class="navigation"></div>
-    <div class="container-fluid">
-      <div class="a">&nbsp;</div>
-      <div class="b">
-      <h3 style='color:#ff9933;'>Login</h3>
-      <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-      <p style="color:#99ff66;">Email : </p><input type="email" name="email" id="email" placeholder = "enter email Id" size="25" value="<?php echo $email;?>" required/><span>&nbsp;&nbsp;<?php echo $emailError;?></span>
+     <div class="container-fluid">
+       <img src="./images/title.png" alt="/" id="title"/>
+       <div class="b">
+       <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+      <p id="emailTitle">Email</p><input type="email" name="email" id="email" placeholder = "Enter Email" size="20" value="<?php echo $email;?>" required/>
+      <br><span class="error"><?php echo $emailError;?></span>
       <br><br>
-      <p style="color:#99ff66;">Password : </p><input type="password" name="password" id="password" placeholder = "enter password" size="25" value="" required/><span>&nbsp;&nbsp;<?php echo $passwordError;?></span>
+      <p id="passwordTitle">Password</p><input type="password" name="password" id="password" placeholder = "Enter Password" size="20" value="" required/>
+      <br><span class="error"><?php echo $passwordError;?></span>
       <br><br>
-      <p></p>
-      <button id="loginButton" type="submit" class="btn btn-warning btn-md">Login</button>
+       <button id="loginButton" type="submit" class="btn btn-default btn-md">Login</button>
     </form>
         <br>
-      <span><a href="./signUp.php">Not A Member Yet? Sign Up</a> </span>
-      </div>
-      <br>
+      <span ><a href="./signUp.php" id="signup">Not A Member Yet? Sign Up</a> </span>
       <div class="c"><?php echo $error; ?></div>
+      </div>
     </div>
   </body>
   <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->
 
   <!-- Latest compiled JavaScript -->
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
 </html>

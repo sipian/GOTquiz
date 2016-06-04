@@ -1,0 +1,82 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url('../fonts/GOT.ttf');
+    font-weight: bold;
+}
+
+body{
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.body{
+  margin-top: -50px;
+}
+
+.b{
+  float: right;
+  margin-right: 5%;
+  margin-top: 15%;
+}
+.c{
+  float: right;
+}
+.error{
+  margin-top: 15px;
+  color: #C0C0C0;
+}
+
+span{
+  color: #1affff;
+}
+#login,#emailTitle,#passwordTitle{
+  font-family: myFirstFont;
+  letter-spacing: 2px;
+  color: #C0C0C0;
+}
+#login{
+  color: #808080;
+}
+#emailTitle,#passwordTitle{
+  font-size: 12px;
+}
+
+#signup{
+  color: #C0C0C0;
+ }
+input{
+    border-color: #C0C0C0;
+  color:#808080;
+}
+#title{
+  position:absolute;
+  left:28%;
+  width:40%;
+  height: 20%;
+  margin-top: 2.5%;
+   z-index: 1;
+}
+
+.btn {
+    border-radius: 0;
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.btn-default {
+    border: 1px solid #C0C0C0;
+    color: #C0C0C0;
+    background-color: transparent;
+}
+
+.btn-default:hover,
+.btn-default:focus {
+    border: 1px solid #C0C0C0;
+    outline: 0;
+    color: #000;
+    background-color: #C0C0C0;
+}

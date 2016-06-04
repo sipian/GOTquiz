@@ -15,8 +15,7 @@ if (!$conn)
   if(mysqli_query($conn,$sql)){
   // remove all session variables
   session_unset();
-  // destroy the session
-  session_destroy();
+ 
 }
 else
 header('Location: ./error.php');
@@ -30,26 +29,29 @@ header('Location: ./error.php');
          <meta charset="utf-8">
          <meta http-equiv="X-UA-Compatible" ss content="IE=edge">
          <meta name="viewport" content="width=device-width initial-scale=1">
+         <link rel='shortcut icon' href='./images/elan.jpg' type='image/x-icon'/ >s
          <!-- Latest compiled and minified CSS -->
-         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+         <link rel="stylesheet" href="./css/bootstrap.min.css">
 
     <title>
-      Completed
+      Error
     </title>
   </head>
-  <body style="background-image:url('./images/background.jpg');">
+  <body style="background-image:url('./images/background.jpg'); background-repeat: no-repeat;  background-size: cover;">
     <div class="navigation"></div>
-    <div class="container-fluid">
+     <div class="container-fluid">
       <div class="a">&nbsp;</div>
       <div class="b">
-        <h3 style="color:#ff9933;">Quiz is Over.Your Time Is Up.</h3>
+        <h3 style="color:#ff9933;">Quiz is completed . Your time is up.</h3>
        </div>
-      <div class="c">&nbsp;</div>
+      <div class="d">&nbsp;</div>
     </div>
   </body >
+  <script type="text/javascript" src="./javascript/common.js"></script>
+
   <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->
 
   <!-- Latest compiled JavaScript -->
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
 </html>

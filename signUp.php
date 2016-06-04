@@ -98,21 +98,21 @@ function checkData()
                    $sql = "select username from userDetails where (username=\"$username\" OR email=\"$email\")";
                   if($result = mysqli_query($conn, $sql)){//4 - check if exists or not
                     if(mysqli_num_rows($result) != 0){//5 - if exists success
-                      $error = 'Either Username or Email already exists.';
+                      $error = 'Username or Email already exists.';
                     }
                     else{//else 5
                       $error = "";
                       $usernameError = "";
-$sql="insert into userDetails (username,email,phone,college,password) VALUES (\"$username\",\"$email\",\"$phone\",\"$college\",\"$password\");";
-$sql.="insert into scoreTable (username,section1question1Count,section2question1Count,section2question2Count,section2question3Count,section2question4Count,section2question5Count,section3question1Count,section3question2Count,section3question3Count,section3question4Count,section3question5Count) VALUES (\"$username\",$MaximumAttemptsInSection1,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3)";
+$sql="insert into userDetails (username,email,phone,college,password) VALUES (\"".$username."\",\"".$email."\",\"".$phone."\",\"".$college."\",\"".$password."\");";
+$sql.="insert into scoreTable (username,section1question1Count,section2question1Count,section2question2Count,section2question3Count,section2question4Count,section2question5Count,section3question1Count,section3question2Count,section3question3Count,section3question4Count,section3question5Count) VALUES (\"".$username."\",$MaximumAttemptsInSection1,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3)";
                    if(mysqli_multi_query($conn,$sql) === TRUE){//8 - if condition check if insertion is true or not
                              $_SESSION["username"]=$username;
                              $_SESSION["contestEnded"]="no";
                              $_SESSION["timeEnd"] = NULL;
                               header('Location: ./dashboard.php');
-                          }else header('Location: ./error.php');
+                           } else header('Location: ./error1.php');
                       }
-                }else  header('Location: ./error.php');
+                }else  header('Location: ./error2.php');
                 }
           }
         }
@@ -127,47 +127,39 @@ $sql.="insert into scoreTable (username,section1question1Count,section2question1
               <meta http-equiv="X-UA-Compatible" ss content="IE=edge">
               <meta name="viewport" content="width=device-width initial-scale=1">
               <!-- Latest compiled and minified CSS -->
-              <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
-              <link rel="stylesheet" href="./timerForCompletion.css">
+              <link rel="stylesheet" href="./css/bootstrap.min.css">
+              <link rel="stylesheet" href="./css/signUp.css">
+              <link rel='shortcut icon' href='./images/elan.jpg' type='image/x-icon'/ >
          <title>
            SIGN UP
          </title>
        </head>
 <body style="background-image:url('./images/background.jpg');">
-    <div class="body">
-      <div class="a">&nbsp;</div>
-      <div class="b">
-      <h3 style="color:#ff9933;">Sign In</h3>
-      <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-      <p style="margin-bottom:0px;margin-top:-5px;color:#99ff66;">Username : </p><input type="text" name="username" id="id" placeholder = "enter username" size="25" value="<?php echo $username;?>" required/><span><?php echo $usernameError;?></span>
-      <br><br>
-      <p style="margin-bottom:0px;margin-top:-5px;color:#99ff66;">Email : </p><input type="email" name="email" id="email"  placeholder = "enter email Id" size="25" value="<?php echo $email;?>" required/><span><?php echo $emailError;?></span>
-      <br><br>
-      <p style="margin-bottom:0px;margin-top:-5px;color:#99ff66;">Phone : </p><input type="number" name="phone" id="phone"  placeholder = "enter phone numer" size="25" min="1" value="<?php echo $phone;?>" required/><span><?php echo $phoneError;?></span>
-      <br><br>
-      <p style="margin-bottom:0px;margin-top:-5px;color:#99ff66;">College : </p><input type="text" name="college" id="college"  placeholder = "enter college" size="25" value="<?php echo $college;?>" required/><span><?php echo $collegeError;?></span>
-      <br><br>
-      <p style="margin-bottom:0px;margin-top:-5px;color:#99ff66;">Password : </p><input type="password" name="password" id="password"  placeholder = "enter password" size="25" value="<?php echo $password;?>" required/><span><?php echo $passwordError;?></span>
-      <br><br>
-       <button id="loginButton" type="submit" class="btn btn-warning btn-md" style="margin-left:50px;">Sign In</button>
+  <div class="container-fluid">
+  <img src="./images/title.png" alt="/" id="title"/>
+       <div class="b">
+       <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+      <p class="p">Username : </p><input type="text" name="username" id="id" placeholder = "Enter Username" size="25" value="<?php echo $username;?>" required/>
+      <br><span><?php echo $usernameError;?></span><br>
+      <p class="p">Email : </p><input type="email" name="email" id="email"  placeholder = "Enter Email" size="25" value="<?php echo $email;?>" required/>
+      <br><span><?php echo $emailError;?></span><br>
+       <p class="p">Phone : </p><input type="number" name="phone" id="phone"  placeholder = "Enter Contact Numer" size="25" min="1" value="<?php echo $phone;?>" required/>
+      <br><span><?php echo $phoneError;?></span><br>
+       <p class="p">College : </p><input type="text" name="college" id="college"  placeholder = "Enter College" size="25" value="<?php echo $college;?>" required/>
+      <br><span><?php echo $collegeError;?></span><br>
+       <p class="p">Password : </p><input type="password" name="password" id="password"  placeholder = "Enter Password" size="25" value="<?php echo $password;?>" required/>
+      <br><span><?php echo $passwordError;?></span><br>
+       <button id="loginButton" type="submit" class="btn btn-default btn-md">SIGN UP</button>
     </form>
+    <br>
+    <div class="c" id="cpu"><?php echo $error; ?></div>
         </div>
-      <br>
-      <div class="d" style="margin-left:230px; color: #1affff;">
-        <?php echo $error; ?>
-      </div>
     </div>
   </body>
   <!-- Javascript placed at end to load page faster-->
   <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-
   <!-- Latest compiled JavaScript -->
   <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
 
-  <script type="text/javascript">
-    $(function () {
-      $("input").focus(function(){ $(".c").html(""); });
-    });
-  </script>
+  <script type="text/javascript"></script>
 </html>

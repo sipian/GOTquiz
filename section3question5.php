@@ -23,7 +23,7 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
         $questionDetail = "section3question5";
         $nextquestionDetail = 'dashboard';
         $solution = $section3question5Answer;
-        $buttonColor = "btn btn-primary btn-md";
+        $buttonColor = "btn btn-default btn-md";
         $nextButton = '';
         $flagForTimer = "false";
       $sql = "select points , $questionDetail"."Count,$questionDetail"."Solved from scoreTable where username = \"".$_SESSION["username"]."\"";
@@ -108,9 +108,10 @@ $endTime = $_SESSION["timeEnd"];
           <meta charset="utf-8">
           <meta http-equiv="X-UA-Compatible" ss content="IE=edge">
           <meta name="viewport" content="width=device-width initial-scale=1">
+          <link rel='shortcut icon' href='./images/elan.jpg' type='image/x-icon'/ >
           <!-- Latest compiled and minified CSS -->
-          <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-          <link rel="stylesheet" href="./timerForCompletion.css">
+          <link rel="stylesheet" href="./css/bootstrap.min.css">
+          <link rel="stylesheet" href="./css/question.css">
           <!--<script type="text/javascript" src="./timerForCompletion.js"></script>-->
 
      <title>
@@ -118,9 +119,18 @@ $endTime = $_SESSION["timeEnd"];
      </title>
    </head>
    <body onload="countdown(year,month,day,hour,minute)" style="background-image:url('./images/background.jpg');">
+     <div class="container-fluid">
      <div class="navigation"></div>
-     <div class="body">
-       <div class="a"></div>
+      <div class="center">
+        <div class="c"></div>
+        <div class="data">
+            <span>Answer Status : <?php echo $answerStatistic; ?></span><br><br>
+          <span>Trials Left : <?php echo $trialsLeft; ?></span><br><br>
+          <span>Current Score : <?php echo $points; ?></span><br><br>
+          <span>Points of this Question : <?php echo $PtsForSection3; ?> </span><br><br>
+          <span>Time Remaining : <span id="3rdTimer"><?php if($flagForTimer == "false") echo $TimeLimitInSection3."seconds"; else echo "---"; ?></span></h2>
+        </div>
+      </div>
        <div class="b">
        <h3 id="questionname"><?php echo $questionName;?></h3>
        <div class=""><img src="./images/<?php echo $questionDetail;?>.jpg" alt="/" style="width:25em;height:15em;"/></div>
@@ -132,17 +142,12 @@ $endTime = $_SESSION["timeEnd"];
 <?php echo $nextButton; ?>
         </div>   </form>
      <br>
-     <div class="data">
-      <span>Answer Status : <?php echo $answerStatistic; ?></span><br>
-     <span>Trials Left : <?php echo $trialsLeft; ?></span><br>
-     <span>Current Score : <?php echo $points; ?></span><br>
-     <span>Points of this Question : <?php echo $PtsForSection2; ?> </span><br>
-      <h2 style="margin-top:-1px;">Time Remaining : <span id="3rdTimer" style="margin-left:20px;"><?php if($flagForTimer == "false") echo $TimeLimitInSection3."seconds"; else echo "---"; ?></span></h2>
-       </div>   </div>
-        <div class="c"></div>
+
+       </div>
+
      </div>
    </body>
-   <script type="text/javascript" src="./common.js"></script>
+   <script type="text/javascript" src="./javascript/common.js"></script>
    <!-- jQuery library -->
    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->
 

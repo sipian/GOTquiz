@@ -22,7 +22,7 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
         $questionDetail = 'section1question1';
         $nextquestionDetail = 'dashboard';
         $solution = $section1question1Answer;
-        $buttonColor = "btn btn-primary btn-md";
+        $buttonColor = "btn btn-default btn-md";
         $sql = "select points , $questionDetail"."Count,$questionDetail"."Solved from scoreTable where username = \"".$_SESSION["username"]."\"";
         if($result=mysqli_query($conn,$sql)){// 2 if get count & Solved of question
         if(mysqli_num_rows($result) == 1){//3 if count == 1 for count & solved
@@ -36,14 +36,14 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
              $buttonDisableVariable = 'disabled';
              $answerStatistic = 'Wrong';
              $buttonColor = "btn btn-danger btn-md";
-             $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+             $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT" title="proceed to next question"/></a>';
            }
            else if($solved == "yes"){//"4 if chance & solved"
              $answerDisableVariable = 'disabled';
              $buttonDisableVariable = 'disabled';
               $answerStatistic = 'Correct';
               $buttonColor = "btn btn-success btn-md";
-              $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+              $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT" title="proceed to next question"/></a>';
             }
           else{//else 4
             if($_SERVER["REQUEST_METHOD"] == "POST"){//5 if form submitted
@@ -57,7 +57,7 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
                           $points = $points + $PtsForSection1;
                           $trialsLeft = $trialsLeft - 1;
                           $buttonColor = "btn btn-success btn-md";
-                          $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+                          $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT" title="proceed to next question"/></a>';
                         }
                         else  header('Location: ./error.php');
                   }
@@ -72,7 +72,7 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
                        if($trialsLeft == 0){
                          $answerDisableVariable = "disabled";
                          $buttonDisableVariable = "disabled";
-                         $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+                         $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT" title="proceed to next question"/></a>';
                        }
                     }
                     else  header('Location: ./error.php');
@@ -93,18 +93,28 @@ require_once './findingEndingTime.php';
           <meta charset="utf-8">
           <meta http-equiv="X-UA-Compatible" ss content="IE=edge">
           <meta name="viewport" content="width=device-width initial-scale=1">
+          <link rel='shortcut icon' href='./images/elan.jpg' type='image/x-icon'/ >
           <!-- Latest compiled and minified CSS -->
-          <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-          <link rel="stylesheet" href="./timerForCompletion.css">
+          <link rel="stylesheet" href="./css/bootstrap.min.css">
+          <link rel="stylesheet" href="./css/question.css">
       <title>
        <?php echo $questionName; ?>
      </title>
    </head>
    <body onload="countdown(year,month,day,hour,minute)" style="background-image:url('./images/background.jpg');">
+     <div class="container-fluid">
      <div class="navigation"></div>
-     <div class="body">
-       <div class="a"></div>
-       <div class="b">
+     <div class="center">
+       <div class="c">
+       </div>
+       <div class="data">
+         <span>Answer Status : <?php echo $answerStatistic; ?></span><br><br>
+        <span>Trials Left : <?php echo $trialsLeft; ?></span><br><br>
+        <span>Points of this Question : <?php echo $PtsForSection1; ?> </span><br><br>
+        <span>Current Score : <?php echo $points; ?></span><br><br>
+       </div>
+     </div>
+      <div class="b">
        <h3 id="questionname"><?php echo $questionName;?></h3>
        <div class=""><img src="./images/<?php echo $questionDetail;?>.jpg" alt="/" style="width:25em;height:15em;"/></div>
        <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -116,24 +126,36 @@ require_once './findingEndingTime.php';
 <?php echo $nextButton; ?>
         </div>
       </form>
+      <br>
+      <button id="forfeit" class="btn btn-default btn-md"> SKIP THIS QUESTION </button>
      <br>
-     <div class="data">
-       <span>Answer Status : <?php echo $answerStatistic; ?></span><br>
-      <span>Trials Left : <?php echo $trialsLeft; ?></span><br>
-      <span>Points of this Question : <?php echo $PtsForSection1; ?> </span><br>
-      <span>Current Score : <?php echo $points; ?></span><br>
-     </div>
 
        </div>
-        <div class="c"></div>
      </div>
-   </body>
-   <script type="text/javascript" src="./common.js"></script>
+    </body>
+   <script type="text/javascript" src="./javascript/common.js"></script>
    <!-- jQuery library -->
    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->
    <!-- Latest compiled JavaScript -->
    <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
    <script type="text/javascript">
+   document.getElementById("answer").focus();
          <?php require_once "./timer.php"; ?>
+         function loadDoc() {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+              xmlText = xhttp.responseText;
+              if(xmlText == "failure")
+               window.location="error.php";
+             else if(xmlText == "success")
+               window.location=""+<?php echo '"'.$nextquestionDetail.'"'; ?>+".php";
+              }
+             }
+         var link = "forfeit.php?"+"question="+<?php echo '"'.$questionDetail.'"'; ?>+"&next="+<?php echo '"'.$nextquestionDetail.'"'; ?>+"&username="+<?php echo '"'.$_SESSION['username'].'"';?>;
+          xhttp.open("GET", link, true);
+          xhttp.send();
+        };
+        document.getElementById('forfeit').onclick=function(){loadDoc();};
    </script>
  </html>

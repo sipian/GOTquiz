@@ -1,3 +1,8 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url('../fonts/GOT.ttf');
+    font-weight: bold;
+}
 body{
   background-repeat: no-repeat;
   background-size: cover;
@@ -14,7 +19,7 @@ body{
     width: 270px;
     height: 60px;
     border: none;
-    margin: -450px auto;
+    margin: 10px auto;
 }
 
 #title, #note {
@@ -41,9 +46,7 @@ body{
     font-style: normal;   /* options are normal or italic */
     z-index: 1;
 }
-.body{
-  margin-top: -50px;
-}
+
 .title {
     border: none;
     padding: 0px;
@@ -72,62 +75,141 @@ body{
     box-shadow: 0 0 10px #000000; /* change to "none" if you don't want a shadow */
 }
 
-.a{
-  width: 100px;
-  float: left;
-  margin-top: 10%;
+.c {
+    overflow:visible;
+    width: 30%;
+    height: 2%;
+    min-width: 100px;
+    min-height: 200px;
+    max-width: 200px;
+    max-height: 300px;
+    border: 1px solid #000000;
+    margin: 50px auto;
+    visibility: visible;
+    z-index: 1;
+ }
 
+.data {
+  overflow:visible;
+  text-align: center;
+    clear:both;
+    display: table;
+    overflow: hidden;
+    border: 1px solid #000000;
+    padding: 0px;
+    margin-top: -100px;
+     margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    font-size: 25px;
+
+ }
+
+
+
+.center{
+   opacity: 0.73;
+   margin-right: 12.5%;
 }
+
 .b{
-  margin-left: 28%;
-  margin-top: 7.5%;
+  position: absolute;
+  right: 4%;
+  top:20%;
+  float: right;
+  margin-right: 5%;
 }
+/*
 .c{
-   float: right;
+   position: absolute;
+   left:30%;
 }
 .data{
-  margin-left:15%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  color:#1affff;
-}
-
-.nav.navbar-nav li a:hover{
-  background-color: rgb(117, 198, 229);
-}
+  position: absolute;
+  left:30%;
+  top:30%;
+ }*/
 #questionname{
-  text-align: left;
+  text-align: center;
   margin-left:10%;
-  color:#99ff66;
+  font-family:Georgia, Serif;
+  color: #C0C0C0;
  }
-ul{
-  list-style-type:disc;
-}
-li a {
-  background-color: #1A2C56;
-  color:#D1A683;
-  text-decoration: none;
-  padding:8%;
-}
+
 #totalTime{
   text-align: center;
-  color: #3333ff;
+  font-family: myFirstFont;
+  letter-spacing: 2px;
+  word-spacing: 10px;
+  color: #C0C0C0;
 }
 span{
-  color: #1affff;
+  color: #bf8040;
+  font-family: myFirstFont;
+  word-spacing: 4px;
+  letter-spacing: 2px;
+  margin: 2px;
 }
 
 input{
-  border-radius: 12px;
-  border-color: #ff4d4d;
-  color:#ff4d4d;
+    border-color: #C0C0C0;
+  color:#808080;
 }
 
-
  #next{
-   width:  55px;
-   height: 55px;
+   width:  160px;
+   height: 85px;
    margin-left: 25px;
-   background-blend-mode: color-burn;
+  };
 
- };
+  .btn {
+      border-radius: 0;
+      text-transform: uppercase;
+      font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-weight: 400;
+      -webkit-transition: all .3s ease-in-out;
+      -moz-transition: all .3s ease-in-out;
+      transition: all .3s ease-in-out;
+  }
+
+  .btn-default {
+      border: 1px solid #C0C0C0;
+      color: #C0C0C0;
+      background-color: transparent;
+  }
+
+  .btn-default:hover,
+  .btn-default:focus {
+      border: 1px solid #C0C0C0;
+      outline: 0;
+      color: #000;
+      background-color: #C0C0C0;
+  }
+
+  .btn-danger {
+      border: 1px solid #C0C0C0;
+      color: #C0C0C0;
+      background-color: transparent;
+  }
+
+  .btn-danger:hover,
+  .btn-danger:focus {
+      border: 1px solid #C0C0C0;
+      outline: 0;
+      color: #000;
+      background-color: #ff3333;
+  }
+
+  .btn-success {
+      border: 1px solid #C0C0C0;
+      color: #C0C0C0;
+      background-color: transparent;
+  }
+
+  .btn-success:hover,
+  .btn-success:focus {
+      border: 1px solid #C0C0C0;
+      outline: 0;
+      color: #000;
+      background-color: #33cc33;
+  }

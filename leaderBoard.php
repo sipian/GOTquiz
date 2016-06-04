@@ -12,7 +12,7 @@
             $leaderboard = "";
             $counter = 1;
           while ($row=mysqli_fetch_assoc($result)) {
-            $leaderboard.="<tr><td>$counter</td><td>".$row["username"]."</td><td>".$row["points"]."</td></tr>";
+            $leaderboard.="<tr><td scope='row' class='col-xs-2'>$counter</td><td class='col-xs-2'>".$row["username"]."</td><td class='col-xs-2'>".$row["points"]."</td></tr>";
             $counter = $counter + 1;
           }
       }else
@@ -23,51 +23,59 @@
 
  ?>
 
+
  <!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <meta http-equiv="X-UA-Compatible" ss content="IE=edge">
-          <meta name="viewport" content="width=device-width initial-scale=1">
-          <!-- Latest compiled and minified CSS -->
-          <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ <html lang="en"><head>
+   <meta charset="utf-8">
+   <title>Leaderboard</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <link rel='shortcut icon' href='./images/elan.jpg' type='image/x-icon'/ >
 
-     <title>
-       LeaderBoard
-     </title>
-   </head>
-   <body onload="countdown(year,month,day,hour,minute)" style="background-image:url('./images/background.jpg');">
-       <div class="body">
-        <div class="navigation"></div>
-        <div class="container">
-          <div class="a"></div>
-          <div class="b">
-          <h3 id="leaderboard" style="color:#99ff66; text-align:center;">LEADERBOARD</h3>
-          <table>
-            <table class="table table-bordered table-condensed table-hover">
-          <thead style="color:#ff0066; ">
-          <tr>
-           <th align=right>Rank</th>
-           <th>Username</th>
-           <th>Points</th>
-          </tr>
-          </thead>
-          <tbody style="color:#1affff;">
-          <?php echo $leaderboard; ?>
-          </tbody>
-          </table>
-           </div>
+   <meta property="og:title" content="">
+ 	<meta property="og:type" content="website">
+ 	<meta property="og:url" content="">
+ 	<meta property="og:site_name" content="">
+ 	<meta property="og:description" content="">
+
+   <!-- Styles -->
+
+   <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+ </head>
+
+ <body style="background-image:url('./images/background2.jpg'); background-repeat: no-repeat;background-size: cover;" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" >
+
+   <div class="container backgroungImg">
+     <div class="row">
+
+       <div class="col-xs-6 signin text-right navbar-nav hidden-xs hidden-sm">
         </div>
-
-      </div>
-   </body>
-
-   <!-- jQuery library -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-
-   <!-- Latest compiled JavaScript -->
-   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-   <script type="text/javascript" src="./common.js"></script>
-
-
+     </div>
+ 		<br>
+ 		<br>
+ 		<div class="row">
+ 			<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+ 	      <div class="panel panel-default" style="color: black;">
+ 	        <div class="panel-heading">
+ 	          <h4>
+ 	            Leaderboard
+ 	          </h4>
+ 	        </div>
+ 	        <table class="table table-fixed">
+ 	          <thead>
+ 	            <tr>
+ 	              <th class="col-xs-2">Rank</th><th class="col-xs-8">User Name</th><th class="col-xs-2">Points</th>
+ 	            </tr>
+ 	          </thead>
+ 	          <tbody>
+              <?php echo $leaderboard; ?>
+           </tbody>
+ 	        </table>
+ 	      </div>
+ 			</div>
+ 	  </div>
+   </div>
+ </body>
  </html>
