@@ -1,9 +1,4 @@
 
-<!--  -->
-<?php
-//starting the session
-session_start();
-?>
 <?php
 require "./connect.php";
 // Check connection
@@ -11,11 +6,10 @@ if (!$conn)
   die("Connection failed: " . mysqli_connect_error());
   else
 {
-  $sql = "update userDetails set quizCompleted = 'yes' where username = \"".$_SESSION["username"]."\"";
+   $sql = "update userDetails set quizCompleted = 'yes' where username = \"".$_SESSION["username"]."\"";
   if(mysqli_query($conn,$sql)){
   // remove all session variables
   session_unset();
- 
 }
 else
 header('Location: ./error.php');
@@ -34,7 +28,7 @@ header('Location: ./error.php');
          <link rel="stylesheet" href="./css/bootstrap.min.css">
 
     <title>
-      Error
+      Completed
     </title>
   </head>
   <body style="background-image:url('./images/background.jpg'); background-repeat: no-repeat;  background-size: cover;">
@@ -42,12 +36,12 @@ header('Location: ./error.php');
      <div class="container-fluid">
       <div class="a">&nbsp;</div>
       <div class="b">
-        <h3 style="color:#ff9933;">Quiz is completed . Your time is up.</h3>
+        <h3 style="color:#C0C0C0;float:right;">Quiz is completed . Your time is up.</h3>
        </div>
       <div class="d">&nbsp;</div>
     </div>
   </body >
-  <script type="text/javascript" src="./javascript/common.js"></script>
+  <script type="text/javascript" src="./javascript/commonGeneral.js"></script>
 
   <!-- jQuery library -->
   <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->

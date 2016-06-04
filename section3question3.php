@@ -19,20 +19,21 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
       require_once './answer.php';
     //initialize the variables
      $answerStatistic="--";$trialsLeft=$points=$error="";
-        $questionName = "Section 3 Question 3";
+        $questionName = "SECTION 3 QUESTION 3";
         $questionDetail = "section3question3";
         $nextquestionDetail = 'section3question4';
         $solution = $section3question3Answer;
         $buttonColor = "btn btn-default btn-md";
         $nextButton = '';
         $flagForTimer = "false";
-      $sql = "select points , $questionDetail"."Count,$questionDetail"."Solved from scoreTable where username = \"".$_SESSION["username"]."\"";
+      $sql = "select points , $questionDetail"."Count,$questionDetail"."Solved ,$questionDetail"."Time from scoreTable where username = \"".$_SESSION["username"]."\"";
       if($result=mysqli_query($conn,$sql)){// 2 if get count & Solved of question
         if(mysqli_num_rows($result) == 1){//3 if count == 1 for count & solved
           $row = mysqli_fetch_assoc($result);
           $trialsLeft = $row[$questionDetail."Count"];
           $solved = $row[$questionDetail."Solved"];
           $points = $row["points"];
+          $CountdownTimer = $row[$questionDetail."Time"];
            if($_SESSION["section3"] == 'yes') header('Location: ./dashboard.php');
             else if($trialsLeft == 0 && $solved == "no"){//"4 if chance & solved"
              $answerDisableVariable = "disabled";
@@ -40,7 +41,7 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
              $answerStatistic = "Wrong";
              $flagForTimer = "true";
              $buttonColor = "btn btn-danger btn-md";
-              $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+             $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
            }
            else if($solved == "yes"){//"4 if chance & solved"
               $answerDisableVariable = "disabled";
@@ -48,7 +49,7 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
               $answerStatistic = "Correct";
               $flagForTimer = "true";
               $buttonColor = "btn btn-success btn-md";
-               $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+              $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
             }
           else{//else 4
             if($_SERVER["REQUEST_METHOD"] == "POST"){//5 if form submitted
@@ -63,7 +64,7 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
                           $points = $points + $PtsForSection3;
                           $trialsLeft = $trialsLeft - 1;
                           $buttonColor = "btn btn-success btn-md";
-                          $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+                          $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
                         }
                         else
                           header('Location: ./error.php');
@@ -80,7 +81,7 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
                          $flagForTimer = "true";
                          $answerDisableVariable = "disabled";
                          $buttonDisableVariable = "disabled";
-                         $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+                         $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
                        }
                     }
                     else
@@ -118,7 +119,7 @@ $endTime = $_SESSION["timeEnd"];
        <?php echo $questionName; ?>
      </title>
    </head>
-   <body onload="countdown(year,month,day,hour,minute)" style="background-image:url('./images/background.jpg');">
+   <body   onload="countdown(year,month,day,hour,minute)" style="background-image:url('./images/background.jpg');">
      <div class="container-fluid">
      <div class="navigation"></div>
       <div class="center">
@@ -128,7 +129,7 @@ $endTime = $_SESSION["timeEnd"];
           <span>Trials Left : <?php echo $trialsLeft; ?></span><br><br>
           <span>Current Score : <?php echo $points; ?></span><br><br>
           <span>Points of this Question : <?php echo $PtsForSection3; ?> </span><br><br>
-          <span>Time Remaining : <span id="3rdTimer"><?php if($flagForTimer == "false") echo $TimeLimitInSection3."seconds"; else echo "---"; ?></span></h2>
+          <span>Time Remaining : <span id="3rdTimer"><?php if($flagForTimer == "false") echo $CountdownTimer." seconds"; else echo "---"; ?></span></h2>
         </div>
       </div>
        <div class="b">
@@ -156,6 +157,8 @@ $endTime = $_SESSION["timeEnd"];
    <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
    <script type="text/javascript">
    <?php require_once "./timer.php"; ?>
+
+
       function loadDoc() {
        var xhttp = new XMLHttpRequest();
        xhttp.onreadystatechange = function() {
@@ -172,20 +175,42 @@ $endTime = $_SESSION["timeEnd"];
            }*/
           }
       var link = "changeCountOf3rd.php?"+"question="+<?php echo '"'.$questionDetail.'"'; ?>+"&username="+<?php echo '"'.$_SESSION['username'].'"';?>;
-       xhttp.open("GET", link, true);
+       xhttp.open("GET", link, false);
        xhttp.send();
      };
+
      document.getElementById("answer").focus();
-         var TimeLimitInSection3 = parseInt(<?php echo '"'.$TimeLimitInSection3.'"'; ?>) - 1;
+         var TimeLimitInSection3 = parseInt(<?php echo '"'.$CountdownTimer.'"'; ?>) - 1;
          if(<?php echo '"'.$flagForTimer.'"'; ?> == "false"){
             var myVar = setInterval(function(){
              document.getElementById("3rdTimer").innerHTML = TimeLimitInSection3+" seconds";
              TimeLimitInSection3 = TimeLimitInSection3 - 1;
-             if(TimeLimitInSection3 == -1){
+             changeTime();
+             if(TimeLimitInSection3 < 0){
                clearInterval(myVar);
                 loadDoc();
              }
-           }, 1000);}
+           }, 1000);
+         }
+
+           function changeTime() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+              if (xhttp.readyState == 4 && xhttp.status == 200) {
+                xmlText = xhttp.responseText;
+                if(xmlText == "success")
+                console.debug("Ajax call finished");
+                else console.debug("Ajax call failed");
+                }
+               /*else if ( xhttp.status == 500) {
+                  window.location="./error.php";
+
+                }*/
+               }
+           var link = "./changeCountDown.php?"+"question="+<?php echo '"'.$questionDetail.'"'; ?>+"&time="+TimeLimitInSection3+"&username="+<?php echo '"'.$_SESSION['username'].'"';?>;
+            xhttp.open("GET", link, true);
+            xhttp.send();
+           };
 
 
     </script>

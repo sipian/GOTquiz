@@ -8,7 +8,15 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
 }
-
+.a{
+  width:41%;
+  height:50%;
+  color:#C0C0C0;
+  position: absolute;
+  top:35%;
+  left:35%;
+  text-align: center;
+}
 .body{
   margin-top: -50px;
 }

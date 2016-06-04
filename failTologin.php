@@ -1,7 +1,4 @@
-<?php
-//starting the session
-session_start();
-?>
+
 <?php
 // remove all session variables
 session_unset();
@@ -25,13 +22,13 @@ session_unset();
     <div class="navigation"></div>
     <div class="container-fluid">
       <div class="a">&nbsp;</div>
-      <div class="b">
-        <h3><a href='./index.php' style="color:#ff9933;">You Are Not Logged In . Please Login First.</a></h3>
+         <div class="b" style="float:right;">
+         <h3><a href='./index.php' style="color:#C0C0C0;text-align:center;">You Are Not Logged In . Please Login First.</a></h3>
        </div>
       <div class="d"></div>
     </div>
   </body >
-  <script type="text/javascript" src="./javascript/common.js"></script>
+  <script type="text/javascript" src="./javascript/commonGeneral.js"></script>
 
   <!-- jQuery library -->
   <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->

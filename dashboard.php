@@ -19,7 +19,7 @@ if($variableToCheckLoggedIn == false)
     else{
       $sql = "select section1,section2,section3 from scoreTable where username = \"".$_SESSION["username"]."\"";
       if($result=mysqli_query($conn,$sql)){
-        if(mysqli_num_rows($result) == 1){
+        if(mysqli_num_rows($result) === 1){
           $row=mysqli_fetch_assoc($result);
           if($row['section1']=='yes'){
             $_SESSION["section1"]="yes";
@@ -55,7 +55,7 @@ if($variableToCheckLoggedIn == false)
       Dashboard
     </title>
   </head>
-  <body style="background-image:url('./images/background2.jpg');">
+  <body  style="background-image:url('./images/background2.jpg'); ">
      <div class="container-fluid">
       <div class="navigation"></div>
      <div class="b" id="demo">
@@ -74,6 +74,7 @@ if($variableToCheckLoggedIn == false)
            <br>
            <ul>
            <li>It is a 1 hour quiz.</li>
+            <li>A countdown timer starts as soon as you start a section.</li>
             <li>There are 3 Sections in the Quiz.</li>
             <li>You can choose the order of the sections but not the order of the questions.</li>
            </ul>
@@ -86,6 +87,8 @@ if($variableToCheckLoggedIn == false)
            <li>Once you enter a section and then you close the browser window <br> or go back to the dashboard page
            you cannot enter that section again.
             </li>
+            <li>For best results use Google Chrome as browser
+             </li>
            </ul>
          </div>
          <br><br>
@@ -95,7 +98,7 @@ if($variableToCheckLoggedIn == false)
            <p>
            <a href='./section1.php' class='btn btn btn-default btn-md btn-md' <?php echo $section1Disabled ?> >SECTION 1</a><br>
            <ul>
-           <li>This section has 1 question of 30 points each.</li>
+           <li>This section has 1 question of 25 points each.</li>
            <li>You will have 5 chances to answer.</li>
            <li>There is no timeLimit for this section</li>
            <li>Once U choose this section you cannot come back to this section&nbsp;.</li>
@@ -104,15 +107,15 @@ if($variableToCheckLoggedIn == false)
            <p>
            <a href='./section2.php' class='btn btn-default btn-md' <?php echo $section2Disabled; ?> >SECTION 2</a><br>
             <ul>
-           <li>This section has 5 question of 25 points each.</li>
+           <li>This section has 5 question of 5 points each.Total points 25 points.</li>
            <li>You will have 5 chances to answer.</li>
            <li>Once U choose this section you cannot come back to this section&nbsp;.</li>
            </ul>
            </p>
            <p>
            <a href='./section3.php' class='btn btn-default btn-md' <?php echo $section3Disabled ?>>SECTION 3</a><br>
-            <ul >
-           <li>This section has 5 question of 50 points each.</li>
+            <ul>
+              <li>This section has 5 question of 10 points each.Total points 50 points.</li>
            <li>You will have only 1 chance to answer.</li>
            <li>You will have 20 seconds to answer this question</li>
            <li>Once U choose this section you cannot come back to this section&nbsp;.</li>

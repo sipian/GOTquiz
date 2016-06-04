@@ -12,7 +12,15 @@ body{
 .body{
   margin-top: -50px;
 }
-
+.a{
+  width:40%;
+  height:50%;
+  color:#C0C0C0;
+  position: absolute;
+  top:35%;
+  left:33%;
+  text-align: center;
+}
 .b{
   float: right;
   margin-right: 5%;

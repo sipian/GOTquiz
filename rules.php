@@ -43,7 +43,7 @@
            <p>
            <h5 id="general">SECTION 1</h5>
            <ul>
-           <li>This section has 1 question of 30 points each.</li>
+           <li>This section has 1 question of 25 points each.</li>
            <li>You will have 5 chances to answer.</li>
            <li>There is no timeLimit for this section</li>
            <li>Once U choose this section you cannot come back to this section&nbsp;.</li>
@@ -51,20 +51,20 @@
            </p>
            <p>
           <h5 id="general">SECTION 2</h5>
-            <ul>
-           <li>This section has 5 question of 25 points each.</li>
-           <li>You will have 5 chances to answer.</li>
-           <li>Once U choose this section you cannot come back to this section&nbsp;.</li>
-           </ul>
+          <ul>
+         <li>This section has 5 question of 5 points each.Total points 25 points.</li>
+         <li>You will have 5 chances to answer.</li>
+         <li>Once U choose this section you cannot come back to this section&nbsp;.</li>
+         </ul>
            </p>
            <p>
              <h5 id="general">SECTION 3</h5>
-            <ul >
-           <li>This section has 5 question of 50 points each.</li>
-           <li>You will have only 1 chance to answer.</li>
-           <li>You will have 20 seconds to answer this question</li>
-           <li>Once U choose this section you cannot come back to this section&nbsp;.</li>
-           </ul>
+             <ul >
+               <li>This section has 5 question of 10 points each.Total points 50 points.</li>
+            <li>You will have only 1 chance to answer.</li>
+            <li>You will have 20 seconds to answer this question</li>
+            <li>Once U choose this section you cannot come back to this section&nbsp;.</li>
+            </ul>
            </p>
          </div>
 
@@ -72,6 +72,6 @@
 
        </div>
    </body>
-  <script type="text/javascript" src="./javascript/common.js"></script>
+   <script type="text/javascript" src="./javascript/commonGeneral.js"></script>
 
 </html>

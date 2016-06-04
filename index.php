@@ -73,7 +73,7 @@ session_start();
                           $_SESSION["contestEnded"]=$row["quizCompleted"];
                           if($row["timeEnd"] != NULL)
                             $_SESSION["timeEnd"]=$row["timeEnd"];
-                           header('Location: ./dashboard.php');
+                            header('Location: ./dashboard.php');
                         }
                       }
              }
@@ -104,7 +104,14 @@ session_start();
   </head>
   <body style="background-image:url('./images/background.jpg');">
      <div class="container-fluid">
-       <img src="./images/title.png" alt="/" id="title"/>
+       <a href="./index.php"><img src="./images/title.png" alt="/" id="title"/></a>
+       <div class="a">
+         ELAN welcomes you to our unique customized quiz on your favorite TV Show <br> "Game of Thrones."<br>
+
+As season 6 is here on every monday, <br>we challenge you to come here the same day to participate in this <br>one hour long quiz <br>throughout the month starting from 6th June.
+
+<br>Prepare for an epic quest on previous seasons testing your memories and knowlegde about Game of Thrones at peak. <br>Prizes worth INR 3000/- at stake !
+       </div>
        <div class="b">
        <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
       <p id="emailTitle">Email</p><input type="email" name="email" id="email" placeholder = "Enter Email" size="20" value="<?php echo $email;?>" required/>

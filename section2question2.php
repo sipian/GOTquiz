@@ -18,7 +18,7 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
       require_once './answer.php';
     //initialize the variables
      $answerStatistic="--";$trialsLeft=$points=$error=$nextButton="";
-        $questionName = 'Section 2 Question 2';
+        $questionName = 'SECTION 2 QUESTION 2';
         $questionDetail = 'section2question2';
         $nextquestionDetail = 'section2question3';
         $solution = $section2question2Answer;
@@ -36,14 +36,14 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
              $buttonDisableVariable = 'disabled';
              $answerStatistic = 'Wrong';
              $buttonColor = "btn btn-danger btn-md";
-             $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+             $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
            }
            else if($solved == "yes"){//"4 if chance & solved"
              $answerDisableVariable = 'disabled';
              $buttonDisableVariable = 'disabled';
               $answerStatistic = 'Correct';
               $buttonColor = "btn btn-success btn-md";
-              $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+              $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
             }
           else{//else 4
             if($_SERVER["REQUEST_METHOD"] == "POST"){//5 if form submitted
@@ -57,7 +57,7 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
                           $points = $points + $PtsForSection2;
                           $trialsLeft = $trialsLeft - 1;
                           $buttonColor = "btn btn-success btn-md";
-                          $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+                          $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
                         }
                         else
                           header('Location: ./error.php');
@@ -73,7 +73,7 @@ else if($_SESSION['contestEnded'] == 'yes')//1 else
                        if($trialsLeft == 0){
                          $answerDisableVariable = "disabled";
                          $buttonDisableVariable = "disabled";
-                         $nextButton = '<a href="./'.$nextquestionDetail.'.php"><img src="./images/next.jpg" id="next" alt="NEXT"/></a>';
+                         $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
                        }
                     }
                     else
@@ -133,7 +133,7 @@ require_once './findingEndingTime.php';
         </div>
       </form>
       <br>
-      <button id="forfeit" class="btn btn-default btn-md"> SKIP THIS QUESTION </button>
+      <button id="forfeit" class="btn btn-default btn-md"> GIVE UP THIS QUESTION </button>
      <br>
 
        </div>

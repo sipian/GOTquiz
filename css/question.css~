@@ -131,11 +131,8 @@ body{
  }*/
 #questionname{
   text-align: center;
-
-  font-family: myFirstFont;
-  letter-spacing: 1px;
-  word-spacing: 5px;
   margin-left:10%;
+  font-family:Georgia, Serif;
   color: #C0C0C0;
  }
 
@@ -144,7 +141,6 @@ body{
   font-family: myFirstFont;
   letter-spacing: 2px;
   word-spacing: 10px;
-  border: 1px solid #C0C0C0;
   color: #C0C0C0;
 }
 span{
@@ -182,8 +178,8 @@ input{
       background-color: transparent;
   }
 
-  .btn.btn-default:hover,
-  .btn.btn-default:focus {
+  .btn-default:hover,
+  .btn-default:focus {
       border: 1px solid #C0C0C0;
       outline: 0;
       color: #000;
@@ -191,30 +187,30 @@ input{
   }
 
   .btn-danger {
-    /*#ff3333;*/
-      border: 1px solid #ff3333;
-      color: #ff3333;
+      border: 1px solid #C0C0C0;
+      color: #C0C0C0;
       background-color: transparent;
   }
 
-  .btn.btn-danger:hover,
-  .btn.btn-danger:focus {
-      border: 1px solid #ff3333;
+  .btn-danger:hover,
+  .btn-danger:focus {
+      border: 1px solid #C0C0C0;
       outline: 0;
-      color: #ff3333;
-      background-color: #e6e6e6;
+      color: #000;
+      background-color: #ff3333;
   }
 
-  .btn.btn-success {
-      border: 1px solid #33cc33;
-      color: #33cc33;
+  .btn-success {
+      border: 1px solid #C0C0C0;
+      color: #C0C0C0;
       background-color: transparent;
   }
 
-  .btn.btn-success:hover,
-  .btn.btn-success:focus {
-      border: 1px solid #33cc33;
+  .btn-success:hover,
+  .btn-success:focus {
+      border: 1px solid #C0C0C0;
       outline: 0;
-      color: #33cc33;
-      background-color: #ffffff;
+      color: #000;
+      background-color: #33cc33;
   }
+

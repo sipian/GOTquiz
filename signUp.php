@@ -110,9 +110,9 @@ $sql.="insert into scoreTable (username,section1question1Count,section2question1
                              $_SESSION["contestEnded"]="no";
                              $_SESSION["timeEnd"] = NULL;
                               header('Location: ./dashboard.php');
-                           } else header('Location: ./error1.php');
+                           } else header('Location: ./error.php');
                       }
-                }else  header('Location: ./error2.php');
+                }else  header('Location: ./error.php');
                 }
           }
         }
@@ -136,7 +136,14 @@ $sql.="insert into scoreTable (username,section1question1Count,section2question1
        </head>
 <body style="background-image:url('./images/background.jpg');">
   <div class="container-fluid">
-  <img src="./images/title.png" alt="/" id="title"/>
+  <a href="./index.php"><img src="./images/title.png" alt="/" id="title"/></a>
+  <div class="a">
+    ELAN welcomes you to our unique customized quiz on your favorite TV Show <br> "Game of Thrones."<br>
+
+As season 6 is here on every monday, <br>we challenge you to come here the same day to participate in this <br>one hour long quiz <br>throughout the month starting from 6th June.
+
+<br>Prepare for an epic quest on previous seasons testing your memories and knowlegde about Game of Thrones at peak. <br>Prizes worth INR 3000/- at stake !
+  </div>
        <div class="b">
        <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
       <p class="p">Username : </p><input type="text" name="username" id="id" placeholder = "Enter Username" size="25" value="<?php echo $username;?>" required/>
