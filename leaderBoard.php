@@ -43,6 +43,7 @@ error_reporting(E_ALL ^ E_WARNING);
    <!-- Styles -->
 
    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+   <link rel="stylesheet" href="./css/leaderBoard.css" media="screen" title="no title" charset="utf-8">
 
  </head>
 
@@ -60,8 +61,8 @@ error_reporting(E_ALL ^ E_WARNING);
  			<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
  	      <div class="panel panel-default" style="color: black;">
  	        <div class="panel-heading">
- 	          <h4>
- 	            Leaderboard
+ 	          <h4 id="title">
+ 	            LEADER BOARD
  	          </h4>
  	        </div>
  	        <table class="table table-fixed">
@@ -97,3 +98,4 @@ error_reporting(E_ALL ^ E_WARNING);
  }});
  </script>
 </html>
+

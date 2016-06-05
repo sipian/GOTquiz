@@ -1,0 +1,12 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url('../fonts/GOT.ttf');
+ }
+
+#title{
+  font-family: myFirstFont;
+  text-align: center;
+  font-weight:bolder;
+  letter-spacing: 1px;
+
+}

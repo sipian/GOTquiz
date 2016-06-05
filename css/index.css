@@ -88,3 +88,36 @@ input{
     color: #000;
     background-color: #C0C0C0;
 }
+
+footer{
+  position: absolute;
+  color: #C0C0C0;
+  top:89%;
+ }
+
+ .list-inline.social{
+   position: absolute;
+   left: 25%;
+ }
+
+ .list-inline.social li p i{
+    color: 	#7FDBBC;
+ }
+ .list-inline.social li p i:hover{
+    color: 	#7FDBBC;
+    opacity: 0.75;
+ }
+small{
+  position: absolute;
+  color: #C0C0C0;
+  right: 17%;
+}
+small a{
+  color: 	#7FDBBC;
+  text-decoration: none;
+}
+small a:hover{
+  color: 	#7FDBBC;
+  text-decoration: none;
+  opacity: 0.75;
+}

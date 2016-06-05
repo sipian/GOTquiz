@@ -98,6 +98,7 @@ session_start();
          <link rel='shortcut icon' href='./images/elan.jpg' type='image/x-icon'/ >
           <!-- Latest compiled and minified CSS -->
          <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
          <link rel="stylesheet" href="./css/index.css">
 
     <title>
@@ -128,6 +129,23 @@ As season 6 is here on every monday, <br>we challenge you to come here the same 
       <span ><a href="./signUp.php" id="signup">Not A Member Yet? Sign Up</a> </span>
       <div class="c"><?php echo $error; ?></div>
       </div>
+      <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 margin-20">
+        <ul class="list-inline social">
+          <li><p>Connect with us on</p></li>
+          <li><p><a href="https://twitter.com/ELAN_IITH"><i class="fa fa-twitter"></i></a></p></li>
+          <li><p><a href="https://www.facebook.com/groups/elan.iit.hyderabad/"><i class="fa fa-facebook"></i></a></p></li>
+        </ul>
+      </div>
+      <div class="col-sm-4 text-right">
+        <p><small>
+          Created by <a href="http://www.elan.org.in/">elan 2017, IIT Hyderabad</a></small></p>
+      </div>
+    </div>
+  </div>
+</footer>
     </div>
   </body>
   <!-- jQuery CDN -->
