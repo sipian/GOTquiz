@@ -1,4 +1,4 @@
-
+a
 
 <?php
 error_reporting(E_ALL ^ E_WARNING);
@@ -31,9 +31,8 @@ session_destroy();
        <div class="navigation"></div>
       <div class="a">&nbsp;</div>
       <div class="b" style="float:right;">
-        <h3 style="color:#C0C0C0;text-align:center;">Thank You For Signing Up.</h3>
-        <h3 style="color:#C0C0C0;text-align:center;">A Breathtaking Journey Awaits You.</h3>
-        <h3 style="color:#C0C0C0;text-align:center;">Please be patient and come back on 6th June 2016 , 10:00PM IST </h3>
+
+        <h3 style="color:#C0C0C0;text-align:center;">Contest has ended.<br>Please come again next Monday to play the next round</h3>
        </div>
       <div class="d">&nbsp;</div>
     </div>

@@ -96,16 +96,17 @@ function checkData()
         $password = $_POST["password"];
         //checking if input is empty block begins
           if(checkData() == true){//3 if conidtion check the data
-                   $sql = "select username from userDetails where (username=\"$username\" OR email=\"$email\")";
+                   $sql = "select username from userDetails where (username=\"$username\" OR email=\"$email\" OR phone=\"$phone\" )";
                   if($result = mysqli_query($conn, $sql)){//4 - check if exists or not
                     if(mysqli_num_rows($result) != 0){//5 - if exists success
-                      $error = 'Username or Email already exists.';
+                      $error = 'User with the above details already exists.';
                     }
                     else{//else 5
                       $error = "";
                       $usernameError = "";
 $sql="insert into userDetails (username,email,phone,college,password) VALUES (\"".$username."\",\"".$email."\",\"".$phone."\",\"".$college."\",\"".$password."\");";
-$sql.="insert into scoreTable (username,section1question1Count,section2question1Count,section2question2Count,section2question3Count,section2question4Count,section2question5Count,section3question1Count,section3question2Count,section3question3Count,section3question4Count,section3question5Count) VALUES (\"".$username."\",$MaximumAttemptsInSection1,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3)";
+$sql.="insert into scoreTable (username,section1question1Count,section2question1Count,section2question2Count,section2question3Count,section2question4Count,section2question5Count,section3question1Count,section3question2Count,section3question3Count,section3question4Count,section3question5Count) VALUES (\"".$username."\",$MaximumAttemptsInSection1,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection2,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3,$MaximumAttemptsInSection3);";
+$sql.="insert into result  VALUES (\"".$username."\",308)";
                    if(mysqli_multi_query($conn,$sql) === TRUE){//8 - if condition check if insertion is true or not
                              $_SESSION["username"]=$username;
                              $_SESSION["contestEnded"]="no";

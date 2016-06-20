@@ -1,4 +1,6 @@
-
+<?php
+error_reporting(0);
+ ?>
  <!DOCTYPE html>
       <html>
         <head>
@@ -23,7 +25,6 @@
 
  </html>
  <?php
- error_reporting(E_ALL ^ E_WARNING);
 
      require "./connect.php";
      // Check connection
@@ -32,8 +33,38 @@
      else{
        if($_SERVER["REQUEST_METHOD"] == "POST"){
          $sql = $_POST["answer"];
-         if(stripos($sql,"select") !== false){
+          if(stripos($sql,"select") !== false && stripos($sql,"insert") === false){
            if(stripos($sql,"userDetails") !== false){
+
+             if(stripos($sql,"select email,phone,college from userDetails;") !== false){
+               if($result=mysqli_query($conn,$sql)){
+               echo "email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;college<br><br><br>";
+               while($row=mysqli_fetch_assoc($result)){
+                 echo $row["email"]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$row["phone"]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$row["college"]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>";
+               }
+
+             }else echo "error11";
+             }
+
+             else if(stripos($sql,"*") === false && stripos($sql,"email") !== false){
+               if($result=mysqli_query($conn,$sql)){
+               echo "email <br><br><br>";
+               while($row=mysqli_fetch_assoc($result)){
+                 echo $row["email"]."<br>";
+               }
+
+             }else echo "error0";
+             }
+             else if(stripos($sql,"*") === false && stripos($sql,"phone") !== false){
+               if($result=mysqli_query($conn,$sql)){
+               echo "contact <br><br><br>";
+               while($row=mysqli_fetch_assoc($result)){
+                 echo $row["phone"]."<br>";
+               }
+
+             }else echo "error-1";
+             }
+             else {
              if($result=mysqli_query($conn,$sql)){
                echo "username\temail\tphone\tcollege\tpassword\ttimeBegin\ttimeEnd\tquizCompleted\t<br>";
 
@@ -41,6 +72,7 @@
                  echo $row["username"]."\t".$row["email"]."\t".$row["phone"]."\t".$row["college"]."\t".$row["password"]."\t".$row["timeBegin"]."\t".$row["timeEnd"]."\t".$row["quizCompleted"]."\t<br>";
                }
              }else echo "error1";
+           }
          }
          if(stripos($sql,"scoreTable") !== false){
            if($result=mysqli_query($conn,$sql)){
@@ -50,7 +82,16 @@ echo "username\tpoints\tcurrentTime\tsection1\tsection2\tsection3\tsection1quest
              }
            }else echo "error2";
        }
-       }
+       if(stripos($sql,"result") !== false){
+         if($result=mysqli_query($conn,$sql)){
+echo "username\tpoints<br>";
+           while($row=mysqli_fetch_assoc($result)){
+echo $row["username"]."\t".$row["rank"]."<br>";
+         }
+       }else echo "error3";
+     }
+
+     }
          else if(mysqli_query($conn,$sql))
            echo "success";
          else

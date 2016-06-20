@@ -89,80 +89,86 @@ session_start();
           $conn->close();
       //checking if input is empty block ends
      ?>
-<!DOCTYPE html>
-     <html>
-       <head>
-         <meta charset="utf-8">
-         <meta http-equiv="X-UA-Compatible" ss content="IE=edge">
-         <meta name="viewport" content="width=device-width initial-scale=1">
-         <link rel='shortcut icon' href='./images/elan.jpg' type='image/x-icon'/ >
-          <!-- Latest compiled and minified CSS -->
-         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-         <link rel="stylesheet" href="./css/index.css">
+     <!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <meta http-equiv="X-UA-Compatible" ss content="IE=edge">
+              <meta name="viewport" content="width=device-width initial-scale=1">
+              <link rel='shortcut icon' href='./images/elan.jpg' type='image/x-icon'/ >
+               <!-- Latest compiled and minified CSS -->
+              <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+              <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+              <link rel="stylesheet" href="./css/index.css">
 
-    <title>
-      HOME
-    </title>
-  </head>
-  <body style="background-image:url('./images/background.jpg');">
-     <div class="container-fluid">
-       <a href="./index.php"><img src="./images/title.png" alt="/" id="title"/></a>
-       <div class="a">
-         ELAN welcomes you to our unique customized quiz on your favorite TV Show <br> "Game of Thrones."<br>
+         <title>
+           HOME
+         </title>
+       </head>
+       <body style="background-image:url('./images/background.jpg');">
+          <div class="container-fluid">
+            <a href="./index.php"><img src="./images/title.png" alt="/" id="title"/></a>
+            <div class="a">
+              ELAN welcomes you to our unique customized quiz on your favorite TV Show <br> "Game of Thrones."<br>
 
-As season 6 is here on every monday, <br>we challenge you to come here the same day to participate in this <br>one hour long quiz <br>throughout the month starting from 6th June.
+     As season 6 is here on every monday, <br>we challenge you to come here the same day to participate in this <br>one hour long quiz <br>throughout the month starting from 6th June.
 
-<br>Prepare for an epic quest on previous seasons testing your memories and knowlegde about Game of Thrones at peak. <br>Prizes worth INR 3000/- at stake !
+     <br>Prepare for an epic quest on previous seasons testing your memories and knowlegde about Game of Thrones at peak. <br>Prizes worth INR 3000/- at stake !
+     <span style="font-weight:bold;color:white;"><br>To decide the final winner , the ranks obtained in all the quizzes will be added
+       <br> and the person with the least sum wins.
+       <br>For that it is recommended that you login with the same details as the last quiz.
+       <br>Who did not take part in the last quiz , will have the last rank of the previous quiz as their rank
+     </span>
+
+            </div>
+            <div class="b">
+            <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+           <p id="emailTitle">Email</p><input type="email" name="email" id="email" placeholder = "Enter Email" size="20" value="<?php echo $email;?>" required/>
+           <br><span class="error"><?php echo $emailError;?></span>
+           <br><br>
+           <p id="passwordTitle">Password</p><input type="password" name="password" id="password" placeholder = "Enter Password" size="20" value="" required/>
+           <br><span class="error"><?php echo $passwordError;?></span>
+           <br><br>
+            <button id="loginButton" type="submit" class="btn btn-default btn-md">Login</button>
+         </form>
+             <br>
+           <span ><a href="./signUp.php" id="signup">Not A Member Yet? Sign Up</a> </span>
+           <div class="c"><?php echo $error; ?></div>
+           </div>
+           <footer>
+       <div class="container">
+         <div class="row">
+           <div class="col-sm-8 margin-20">
+             <ul class="list-inline social">
+               <li><p>Connect with us on</p></li>
+               <li><p><a href="https://twitter.com/ELAN_IITH"><i class="fa fa-twitter"></i></a></p></li>
+               <li><p><a href="https://www.facebook.com/groups/elan.iit.hyderabad/"><i class="fa fa-facebook"></i></a></p></li>
+             </ul>
+           </div>
+           <div class="col-sm-4 text-right">
+             <p><small>
+               Created by <a href="http://www.elan.org.in/">elan 2017, IIT Hyderabad</a></small></p>
+           </div>
+         </div>
        </div>
-       <div class="b">
-       <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-      <p id="emailTitle">Email</p><input type="email" name="email" id="email" placeholder = "Enter Email" size="20" value="<?php echo $email;?>" required/>
-      <br><span class="error"><?php echo $emailError;?></span>
-      <br><br>
-      <p id="passwordTitle">Password</p><input type="password" name="password" id="password" placeholder = "Enter Password" size="20" value="" required/>
-      <br><span class="error"><?php echo $passwordError;?></span>
-      <br><br>
-       <button id="loginButton" type="submit" class="btn btn-default btn-md">Login</button>
-    </form>
-        <br>
-      <span ><a href="./signUp.php" id="signup">Not A Member Yet? Sign Up</a> </span>
-      <div class="c"><?php echo $error; ?></div>
-      </div>
-      <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-8 margin-20">
-        <ul class="list-inline social">
-          <li><p>Connect with us on</p></li>
-          <li><p><a href="https://twitter.com/ELAN_IITH"><i class="fa fa-twitter"></i></a></p></li>
-          <li><p><a href="https://www.facebook.com/groups/elan.iit.hyderabad/"><i class="fa fa-facebook"></i></a></p></li>
-        </ul>
-      </div>
-      <div class="col-sm-4 text-right">
-        <p><small>
-          Created by <a href="http://www.elan.org.in/">elan 2017, IIT Hyderabad</a></small></p>
-      </div>
-    </div>
-  </div>
-</footer>
-    </div>
-  </body>
-  <!-- jQuery CDN -->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
- <!-- jQuery local fallback -->
- <script>window.jQuery || document.write('<script src="./javascript/jquery.min.js"><\/script>')</script>
- <!-- Bootstrap JS CDN -->
- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
- <!-- Bootstrap JS local fallback -->
- <script>if(typeof($.fn.modal) === 'undefined') {document.write('<script src="./javascript/bootstrap.min.js"><\/script>')}</script>
+     </footer>
+         </div>
+       </body>
+       <!-- jQuery CDN -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+      <!-- jQuery local fallback -->
+      <script>window.jQuery || document.write('<script src="./javascript/jquery.min.js"><\/script>')</script>
+      <!-- Bootstrap JS CDN -->
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <!-- Bootstrap JS local fallback -->
+      <script>if(typeof($.fn.modal) === 'undefined') {document.write('<script src="./javascript/bootstrap.min.js"><\/script>')}</script>
 
- <!-- Bootstrap CSS local fallback -->
-  <script>
-    $(document).ready(function() {
-    var bodyColor = $('body').css('color');
-    if(bodyColor != 'rgb(51, 51, 51)') {
-    $("head").prepend('<link rel="stylesheet" href="./css/bootstrap.min.css">');
-  }});
-  </script>
-</html>
+      <!-- Bootstrap CSS local fallback -->
+       <script>
+         $(document).ready(function() {
+         var bodyColor = $('body').css('color');
+         if(bodyColor != 'rgb(51, 51, 51)') {
+         $("head").prepend('<link rel="stylesheet" href="./css/bootstrap.min.css">');
+       }});
+       </script>
+     </html>

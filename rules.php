@@ -21,9 +21,19 @@
             <h4 id="general">GENERAL RULES</h4>
            <br>
            <ul>
-           <li>It is a 1 hour quiz.</li>
-            <li>There are 3 Sections in the Quiz.</li>
-            <li>You can choose the order of the sections but not the order of the questions.</li>
+             <li>It is a 1 hour quiz.</li>
+              <li>A countdown timer starts as soon as you start a section.</li>
+              <li>There are 3 Sections in the Quiz.</li>
+              <li>You can choose the order of the sections but not the order of the questions.</li>
+              <li>The answers are case insensitive</li>
+              <li>If answer has more than 1 word add a space too between the words</li>
+              <li>You can click on the image to open it in a new tab.</li>
+              <li>Some questions are based on the book too.</li>
+              <li>To decide the final winner , the ranks obtained in all the quizzes will be added
+                <br> and the person with the least sum wins.
+                <br>For that it is recommended that you login with the same details as the last quiz
+                <br>Who did not take part in the last quiz , will have the last rank of the previous quiz as their rank.
+              </li>
            </ul>
            <br>
            <h4 id="general">IMPORTANT TECHNICAL POINTS</h4><br>
@@ -45,29 +55,30 @@
            <p>
            <h5 id="general">SECTION 1</h5>
            <ul>
-           <li>This section has 1 question of 25 points each.</li>
-           <li>You will have 5 chances to answer.</li>
-           <li>There is no timeLimit for this section</li>
-           <li>You have the choice to give up the question and proceed to the next one.<br> Once you give up a question you can't come back to that question</li>
-           <li>Once U choose this section you cannot come back to this section&nbsp;.</li>
+             <li>This section has 1 question of 25 points each.</li>
+             <li>There is no restriction on number of trials for the question.</li>
+             <li>There is no timeLimit for this section</li>
+             <li>You have the choice to give up the question and proceed to the next one.<br> Once you give up a question you can't come back to that question</li>
+             <li>Once U choose this section you cannot come back to this section&nbsp;.</li>
            </ul>
            </p>
            <p>
           <h5 id="general">SECTION 2</h5>
           <ul>
-         <li>This section has 5 question of 5 points each.Total points 25 points.</li>
-         <li>You will have 5 chances to answer.</li>
-         <li>There is no timeLimit for this section</li>
-         <li>You have the choice to give up the question and proceed to the next one.<br> Once you give up a question you can't come back to that question</li>
-         <li>Once U choose this section you cannot come back to this section&nbsp;.</li>
+            <li>This section has 5 question .</li>
+            <li>There is no restriction on number of trials for each question.</li>
+            <li>If you answer a question in 5 chances you will get 10 points for that particular question.</li>
+            <li>Or else you will get 5 points for that particular question.</li>
+            <li>You have the choice to give up the question and proceed to the next one.<br> Once you give up a question you can't come back to that question</li>
+            <li>Once U choose this section you cannot come back to this section&nbsp;.</li>
          </ul>
            </p>
            <p>
              <h5 id="general">SECTION 3</h5>
              <ul>
                <li>This section has 5 question of 10 points each.Total points 50 points.</li>
-            <li>You will have only 1 chance to answer.</li>
-            <li>You will have 20 seconds to answer this question</li>
+               <li>There is no restriction on number of trials for each question.</li>
+            <li>You will have 25 seconds to answer this question</li>
             <li>Once U choose this section you cannot come back to this section&nbsp;.</li>
             </ul>
            </p>

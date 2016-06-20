@@ -18,17 +18,17 @@ var tz=5.5;          /* -->Offset for your timezone in hours from UTC (see
                          the timezone offset for your location) */
 
 //-->    DO NOT CHANGE THE CODE BELOW!    <--
-d1 = new Image(); d1.src = "./images/1.png";
-d2 = new Image(); d2.src = "./images/2.png";
-d3 = new Image(); d3.src = "./images/3.png";
-d4 = new Image(); d4.src = "./images/4.png";
-d5 = new Image(); d5.src = "./images/5.png";
-d6 = new Image(); d6.src = "./images/6.png";
-d7 = new Image(); d7.src = "./images/7.png";
-d8 = new Image(); d8.src = "./images/8.png";
-d9 = new Image(); d9.src = "./images/9.png";
-d0 = new Image(); d0.src = "./images/0.png";
-bkgd = new Image(); bkgd.src = "./images/bkgd.gif";
+d1 = new Image(); d1.src = "../images/1.png";
+d2 = new Image(); d2.src = "../images/2.png";
+d3 = new Image(); d3.src = "../images/3.png";
+d4 = new Image(); d4.src = "../images/4.png";
+d5 = new Image(); d5.src = "../images/5.png";
+d6 = new Image(); d6.src = "../images/6.png";
+d7 = new Image(); d7.src = "../images/7.png";
+d8 = new Image(); d8.src = "../images/8.png";
+d9 = new Image(); d9.src = "../images/9.png";
+d0 = new Image(); d0.src = "../images/0.png";
+bkgd = new Image(); bkgd.src = "../images/bkgd.gif";
 
 var montharray=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
 
@@ -55,7 +55,7 @@ function countdown(yr,m,d,hr,min){
        document.getElementById('note').innerHTML=note;
        document.getElementById('note').style.display="block";
        document.getElementById('countdown').style.display="none";
-       window.location="./completedQuiz.php";
+       window.location="../completedQuiz.php";
        clearTimeout(startTimer);
        return;
    }

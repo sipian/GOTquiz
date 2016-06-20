@@ -7,12 +7,22 @@
         <nav class="navbar navbar-inverse">
         <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="./dashboard.php" title="Visit dashboard">GAME OF THRONES</a>
+          <a class="navbar-brand" href="#" title="Link To The Dashboard Has Been Disabled So You cannot go back to dashboard unless you complete this section">GAME OF THRONES</a>
            <ul class="nav navbar-nav">
               <li title="view leaderboard"> <a href="./leaderBoard.php" target="_blank" >LeaderBoard</a></li>
+              <li title="view overall leaderboard"> <a href="./leaderBoard2.php" target="_blank" >Overall LeaderBoard</a></li>
             <li title="view rules"><a href="./rules.php" target="_blank" >Rules</a></li>
-            <li  title="visit forum"><a href="https://www.facebook.com/groups/elan.iit.hyderabad/" target="_blank">Forum</a></li>
-            </ul>
+            <li title="visit forum"><a href="https://www.facebook.com/elan.iithyderabad/app/318350928226520/?__mref=message_bubble" target="_blank" >Forum</a></li>
+            <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" >Previous Answers<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+             <li><a href="./solutions1.html"  target="_blank">1st Quiz</a></li>
+             <li><a href="./solutions2.html"  target="_blank">2nd Quiz</a></li>
+             </ul>
+             </li>
+            <li  title="logout"><a href="./logout.php" target="_self">Logout</a></li>
+           </ul>
         </div>
         </nav>
         `;

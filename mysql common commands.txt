@@ -5,7 +5,7 @@ database = elanorg_2016_GOT
 command : 
 //create user
 Temporary : 	create user 'elanorg_harsh'@'%' IDENTIFIED BY 'pAsSwOrD123@elan';
-		grant select,insert,update,delete,drop,create
+		grant ALL PRIVILEGES
 			on elanorg_2016_GOT.*
 			to 'elanorg_harsh'@'%';
 Final : 	create user 'elanorg_harsh'@'%' IDENTIFIED BY 'pAsSwOrD123@elan';
@@ -17,13 +17,47 @@ create database elanorg_2016_GOT;
 use elanorg_2016_GOT;
 //create table
 
-Temporary : 	create table userDetails(username varchar(20) primary key ,email varchar(30) not null,phone varchar(15) not null,college varchar(50) not null,password varchar(30) not null,timeBegin datetime , timeEnd datetime , quizCompleted varchar(5) default 'no' );
+Temporary : 	create table userDetails(username varchar(20) primary key ,email varchar(50) not null,phone varchar(15) not null,college varchar(50) not null,password varchar(30) not null,timeBegin datetime , timeEnd datetime , quizCompleted varchar(5) default 'no' );
 
-create table scoreTable(username varchar(20) primary key,points integer default 0,currentTime datetime default null, section1 varchar(5) default 'no', section2 varchar(5) default 'no', section3 varchar(5) default 'no' , section1question1Solved varchar(5) default 'no',section1question1Count integer,section2question1Solved varchar(5) default 'no',section2question1Count integer,section2question2Solved varchar(5) default 'no',section2question2Count integer,section2question3Solved varchar(5) default 'no',section2question3Count integer,section2question4Solved varchar(5) default 'no',section2question4Count integer,section2question5Solved varchar(5) default 'no',section2question5Count integer,section3question1Solved varchar(5) default 'no',section3question1Count integer,section3question1Time integer default 20,section3question2Solved varchar(5) default 'no',section3question2Count integer,section3question2Time integer default 20,section3question3Solved varchar(5) default 'no',section3question3Count integer,section3question3Time integer default 20,section3question4Solved varchar(5) default 'no',section3question4Count integer,section3question4Time integer default 20,section3question5Solved varchar(5) default 'no',section3question5Count integer,section3question5Time integer default 20);`
+create table scoreTable(username varchar(20) primary key,points integer default 0,currentTime datetime default null, section1 varchar(5) default 'no', section2 varchar(5) default 'no', section3 varchar(5) default 'no' , section1question1Solved varchar(5) default 'no',section1question1Count integer,section2question1Solved varchar(5) default 'no',section2question1Count integer,section2question2Solved varchar(5) default 'no',section2question2Count integer,section2question3Solved varchar(5) default 'no',section2question3Count integer,section2question4Solved varchar(5) default 'no',section2question4Count integer,section2question5Solved varchar(5) default 'no',section2question5Count integer,section3question1Solved varchar(5) default 'no',section3question1Count integer,section3question1Time integer default 25,section3question2Solved varchar(5) default 'no',section3question2Count integer,section3question2Time integer default 25,section3question3Solved varchar(5) default 'no',section3question3Count integer,section3question3Time integer default 25,section3question4Solved varchar(5) default 'no',section3question4Count integer,section3question4Time integer default 25,section3question5Solved varchar(5) default 'no',section3question5Count integer,section3question5Time integer default 25);`
 
 create table commonDetails(PtsForSection1 integer DEFAULT 5,PtsForSection2 integer DEFAULT 10,PtsForSection3 integer DEFAULT 15,MaximumAttemptsInSection1 integer default 5,MaximumAttemptsInSection2 integer default 5,MaximumAttemptsInSection3 integer default 1,TimeLimitInSection3 integer default 20,TotalTimeLimit integer default 2);
 
 create table answers(questionDetails varchar(20),answer varchar(30));
+
+create table result(username varchar(20) unique, rank int AUTO_INCREMENT ,   primary key (rank) );
+alter table result modify rank int NOT NULL;
+alter table result drop primary key;
+alter table result modify username varchar(20) primary key;
+
+insert into result(username) select username from scoreTable order by points DESC,currentTime ASC LIMIT 154
+insert into result(username,rank) select username,points from scoreTable order by points DESC,currentTime ASC LIMIT 154,300;
+update result set rank = 154 where rank=0;
+
+
+// for new quiz 
+update userDetails set timeBegin=null,timeEnd=null,quizCompleted='no';
+
+update scoreTable set points=0,currentTime=null,section1='no',section2='no',section3='no',section1question1Solved='no',section1question1Count=5,section2question1Solved='no',section2question1Count=5,section2question2Solved='no',section2question2Count=5;
+
+
+update scoreTable set section2question3Solved='no',section2question3Count=5,section2question4Solved='no',section2question4Count=5,section2question5Solved='no',section2question5Count=5;
+
+
+update scoreTable set section3question1Solved='no',section3question1Count=1,section3question1Time=25;
+update scoreTable set section3question2Solved='no',section3question2Count=1,section3question2Time=25;
+update scoreTable set section3question3Solved='no',section3question3Count=1,section3question3Time=25;
+update scoreTable set section3question4Solved='no',section3question4Count=1,section3question4Time=25;
+update scoreTable set section3question5Solved='no',section3question5Count=1,section3question5Time=25;
+
+
+//for new quiz ends
+
+
+insert into result VALUES ("Janaki",154),("sahithiaudi",154),("thrilok",154),("surbhi",154),("waltersnow",154),("charanteja0794@gmail",154),("sairam",154),("iamnoone",154),("guna",154),("rohith5955",154),("Aditya barthwal",154);
+
+ 
+
 
 //delete table
 delete from userDetails;
@@ -55,3 +89,76 @@ $questionDetails$Pts
 mddle set points to section2
 
 if row["section1"]
+
+
+
+//
+
+update scoreTable set section3question1Time = 25 , section3question2Time = 25 , section3question3Time = 25 , section3question4Time = 25 , section3question5Time = 25;
+
+
+//alter table
+
+
+ALTER TABLE scoreTable MODIFY COLUMN section3question1Time integer default 25,MODIFY COLUMN section3question2Time integer default 25,MODIFY COLUMN section3question3Time integer default 25,MODIFY COLUMN section3question4Time integer default 25,MODIFY COLUMN section3question5Time integer default 25;
+ 
+
+
+ALTER TABLE scoreTable ADD COLUMN section3question1Time integer default 25,MODIFY COLUMN section3question2Time integer default 25,MODIFY COLUMN section3question3Time integer default 25,MODIFY COLUMN section3question4Time integer default 25,MODIFY COLUMN section3question5Time integer default 25;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+result :
+
+update result set rank = rank + 154;
+update result set rank = rank - 153 where username='AjaxnYomama';
+update result set rank = rank - 152 where username='shivaroonval';
+update result set rank = rank - 151 where username='Spartan';
+update result set rank = rank - 150 where username='kaitou_kid';
+update result set rank = rank - 149 where username='Agnibha Roy';
+update result set rank = rank - 148 where username='shrutiii';
+update result set rank = rank - 147 where username='tywin';
+update result set rank = rank - 146 where username='po';
+
+
+
+
+
+update scoreTable set points = 20 where username='Robotic';
+update scoreTable set points = 20 where username='spandana';
+update scoreTable set points = 20 where username='JON SNOW';
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+

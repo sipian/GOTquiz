@@ -7,13 +7,13 @@ error_reporting(E_ALL ^ E_WARNING);
     if (!$conn)
       die("Connection failed: " . mysqli_connect_error());
     else{
-      $sql = "select username,points from scoreTable order by points DESC,currentTime ASC";
+      $sql = "select * from result order by rank ASC";
       if($result=mysqli_query($conn,$sql)){
         if(mysqli_num_rows($result) >= 0){
             $leaderboard = "";
             $counter = 1;
           while ($row=mysqli_fetch_assoc($result)) {
-            $leaderboard.="<tr><td scope='row' class='col-xs-2'>$counter</td><td class='col-xs-2'>".$row["username"]."</td><td class='col-xs-2'>".$row["points"]."</td></tr>";
+            $leaderboard.="<tr><td scope='row' class='col-xs-2'>$counter</td><td class='col-xs-2'>".$row["username"]."</td></tr>";
             $counter = $counter + 1;
           }
       }else
@@ -57,13 +57,14 @@ error_reporting(E_ALL ^ E_WARNING);
  	      <div class="panel panel-default" style="color: black;">
  	        <div class="panel-heading">
  	          <h4 id="title">
- 	            LEADER BOARD
+ 	            OVERALL &nbsp;LEADERBOARD
  	          </h4>
+            <span style="margin-left:20%;">This is based on last Monday's quiz.Will be updated after this quiz is over.</span>
  	        </div>
  	        <table class="table table-fixed">
  	          <thead>
  	            <tr>
- 	              <th class="col-xs-2">Rank</th><th class="col-xs-8">User Name</th><th class="col-xs-2">Points</th>
+ 	              <th class="col-xs-2">Rank</th><th class="col-xs-8">User Name</th>
  	            </tr>
  	          </thead>
  	          <tbody>

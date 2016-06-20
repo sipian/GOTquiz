@@ -26,7 +26,7 @@ if($variableToCheckLoggedIn == false)
           $_SESSION["section3"]="no";
           $sql = "update scoreTable set section3 = 'yes' where username = \"".$_SESSION["username"]."\"";
           if(mysqli_query($conn,$sql))
-            header('Location: ./section3question1.php');
+            header('Location: ./questions/SeQu31.php');
           else header('Location: ./error.php');
         }
       }else header('Location: ./error.php');
