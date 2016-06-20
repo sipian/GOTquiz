@@ -131,8 +131,8 @@ $endTime = $_SESSION["timeEnd"];
          <h3 id="questionname" style="margin-bottom:50px; ">Question #5</h3>
          <div class="container">
            <div class="row">
-             <div class="col-sm-1"></div>
-             <div class="image col-sm-7" style="margin-top:-40px;color: #C0C0C0; text-align:left;">
+             <div class="col-sm-0"></div>
+             <div class="image col-sm-7" style="margin-top:-40px;margin-left:-30px;color: #C0C0C0; text-align:left;">
                In 2013, researchers discovered a new species of sea slug off the coast of Brazil.
                <br>Marine biologists Felipe de Vasconcelos Silva, Victor Manuel De Azevedoa and Helena Matthews-Cascona
                <br>were struck by the similarity between the creature’s pale yellow fronds and the silvery braids of a particular Game of Thrones’ character.
@@ -149,7 +149,7 @@ $endTime = $_SESSION["timeEnd"];
            <div class="row">
 <div class="col-sm-2"></div>
 <div class="col-sm-4"><!-- div for input-->
-<input type="answer"  name="answer" id="answer" class="offset-2" placeholder = "enter answer here" size="25" <?php echo $answerDisableVariable;?> required/>
+<input type="answer" style="margin-left:-40px;"  name="answer" id="answer" class="offset-2" placeholder = "enter answer here" size="25" <?php echo $answerDisableVariable;?> required/>
  </div>
 </div>
            <br>

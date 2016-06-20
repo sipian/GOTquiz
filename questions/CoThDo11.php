@@ -111,23 +111,25 @@ require_once '../findingEndingTime.php';
 
        <div class="row">
 
-         <div class="col-sm-2"></div><!-- div for left part-->
+         <div class="col-sm-3"></div><!-- div for left part-->
          <div class="col-sm-7" style=""><!-- div for images and form-->
 
-         <h3 id="questionname" style="margin-bottom:50px; ">CONNECT THE DOTS</h3>
+         <h3 id="questionname" style="margin-bottom:50px;margin-left:-120px; margin-top:-8px;">CONNECT THE DOTS</h3>
          <div class="image" style="margin-top:-40px; ">
-          <a href="../images/D2CoThDo111.png" target="_blank"><img src="../images/D2CoThDo111.png" alt="/" style="width:190px;height:300px;"/></a>
-          <a href="../images/D2CoThDo112.png" target="_blank"><img src="../images/D2CoThDo112.png" alt="/" style="width:240px;height:300px;"/></a>
-          <a href="../images/D2CoThDo113.png" target="_blank"><img src="../images/D2CoThDo113.png" alt="/" style="width:170px;height:300px;"/></a>
+          <a href="../images/D3CoThDo111.png" target="_blank"><img src="../images/D3CoThDo111.png" alt="/" style="width:250px;height:250px;"/></a>
+          <a href="../images/D3CoThDo112.png" target="_blank"><img src="../images/D3CoThDo112.png" alt="/" style="width:250px;height:250px;"/></a>
+          <br>
+          <a href="../images/D3CoThDo113.png" target="_blank"><img src="../images/D3CoThDo113.png" alt="/" style="width:250px;height:250px;"/></a>
+          <a href="../images/D3CoThDo114.png" target="_blank"><img src="../images/D3CoThDo114.png" alt="/" style="width:250px;height:250px;"/></a>
          </div>
 
          <!-- div for form-->
          <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="container">
            <br>
            <div class="row">
-<div class="col-sm-2"></div>
+<div class="col-sm-1"></div>
 <div class="col-sm-4"><!-- div for input-->
-<input type="answer"  name="answer" id="answer" class="offset-2" placeholder = "enter answer here" size="25" <?php echo $answerDisableVariable;?> required/>
+<input type="answer"  name="answer" id="answer" class="col-sm-offset-1" placeholder = "enter answer here" size="25" <?php echo $answerDisableVariable;?> required/>
  </div>
 </div>
            <br>
@@ -136,7 +138,7 @@ require_once '../findingEndingTime.php';
              <div class="row">
                <div class="col-sm-2"></div><!-- div for left part-->
                <div class="col-sm-4"><!-- div for submit & next button-->
-       <button id="loginButton" type="submit"  class="<?php echo $buttonColor;?> offset-7" <?php echo $buttonDisableVariable;?> title="<?php echo $buttonTitle;?>"> SUBMIT </button>
+       <button id="loginButton" type="submit" style="margin-left:-20px;"  class="<?php echo $buttonColor;?>" <?php echo $buttonDisableVariable;?> title="<?php echo $buttonTitle;?>"> SUBMIT </button>
 
                </div>
              </div>
@@ -149,12 +151,11 @@ require_once '../findingEndingTime.php';
                 </div>
              </div>
 
-            <br>
 
             <div class="row">
               <div class="col-sm-2"></div>
               <div class="col-sm-4"><!-- div for forfeit button-->
-                <button id="forfeit" class="btn btn-default btn-md offset2"> GIVE UP THIS QUESTION </button>
+                <button id="forfeit" style="margin-left:-65px;" class="btn btn-default btn-md"> GIVE UP THIS QUESTION </button>
               </div>
             </div>
             </div>

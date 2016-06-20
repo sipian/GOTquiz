@@ -47,7 +47,7 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
              $buttonTitle = "Your time is up.Proceed to next question.";
              $flagForTimer = "true";
              $buttonColor = "btn btn-danger btn-md";
-             $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
+             $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" style="margin-left:72px;" class="btn btn-default btn-md">NEXT</a>';
            }
            else if($solved == "yes"){//"4 if chance & solved"
               $answerDisableVariable = "disabled";
@@ -56,7 +56,7 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
               $buttonTitle = "You have answered correctly.Proceed to the next question.";
               $flagForTimer = "true";
               $buttonColor = "btn btn-success btn-md";
-              $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
+              $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" style="margin-left:72px;" class="btn btn-default btn-md">NEXT</a>';
             }
           else{//else 4
             if($_SERVER["REQUEST_METHOD"] == "POST"){//5 if form submitted
@@ -71,7 +71,7 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
                           $buttonTitle = "You have answered correctly.Proceed to the next question.";
                           $points = $points + $PtsForSection3;
                            $buttonColor = "btn btn-success btn-md";
-                          $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
+                          $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" style="margin-left:72px;" class="btn btn-default btn-md">NEXT</a>';
                         }
                         else
                           header('Location: ../error.php');
@@ -132,12 +132,12 @@ $endTime = $_SESSION["timeEnd"];
          <div class="container">
            <div class="row">
              <div class="col-sm-1"></div>
-             <div class="image col-sm-6" style="margin-top:-40px;color: #C0C0C0; text-align:center;">
+             <div class="image col-sm-6" style="margin-top:-40px;margin-left:-33px;color: #C0C0C0; text-align:center;">
                Which of the following is the odd one out?
-	              <br>Flies for dung shovelers
-	               <br>Hammers for builders
-	                <br>Hands for thieves
-	                 <br>Tears for prostitutes
+	              <br><span >Flies for dung shovelers</span>
+	              <br> <span style="margin-left:-19px;">Hammers for builders</span>
+	              <br> <span style="margin-left:-45px;">Hands for thieves</span>
+	              <br> <span style="margin-left:-30px;">Tears for prostitutes</span>
              </div>
            </div>
          </div>
@@ -149,7 +149,7 @@ $endTime = $_SESSION["timeEnd"];
            <div class="row">
 <div class="col-sm-2"></div>
 <div class="col-sm-4"><!-- div for input-->
-<input type="answer"  name="answer" id="answer" class="offset-2" placeholder = "enter answer here" size="25" <?php echo $answerDisableVariable;?> required/>
+<input type="answer"  name="answer" id="answer"  style="margin-left:27px;" placeholder = "enter answer here" size="25" <?php echo $answerDisableVariable;?> required/>
  </div>
 </div>
            <br>
@@ -158,7 +158,7 @@ $endTime = $_SESSION["timeEnd"];
              <div class="row">
                <div class="col-sm-2"></div><!-- div for left part-->
                <div class="col-sm-4"><!-- div for submit & next button-->
-       <button id="loginButton" type="submit"  class="<?php echo $buttonColor;?> offset-7" <?php echo $buttonDisableVariable;?> title="<?php echo $buttonTitle;?>"> SUBMIT </button>
+       <button id="loginButton" style="margin-left:72px;" type="submit"  class="<?php echo $buttonColor;?>" <?php echo $buttonDisableVariable;?> title="<?php echo $buttonTitle;?>"> SUBMIT </button>
 
                </div>
              </div>

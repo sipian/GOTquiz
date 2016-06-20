@@ -22,9 +22,12 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
      $answerStatistic="--";$trialsLeft=$points=$error="";
         $questionDetail = "section3question1";
         $nextquestionDetail = 'SeQu32';
+
         $solution = $section3question1Answer;
         $solution1 = $section3question1Answer1;
-        $answerDisableVariable="";
+        $solution2 = $section3question1Answer2;
+
+         $answerDisableVariable="";
         $buttonDisableVariable="";
         $nextButton="";
         $buttonTitle="";
@@ -47,7 +50,7 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
              $buttonTitle = "Your time is up.Proceed to next question.";
              $flagForTimer = "true";
              $buttonColor = "btn btn-danger btn-md";
-             $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
+             $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" style="margin-left:73px;" class="btn btn-default btn-md">NEXT</a>';
            }
            else if($solved == "yes"){//"4 if chance & solved"
               $answerDisableVariable = "disabled";
@@ -56,12 +59,12 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
               $buttonTitle = "You have answered correctly.Proceed to the next question.";
               $flagForTimer = "true";
               $buttonColor = "btn btn-success btn-md";
-              $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
+              $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" style="margin-left:73px;" class="btn btn-default btn-md">NEXT</a>';
             }
           else{//else 4
             if($_SERVER["REQUEST_METHOD"] == "POST"){//5 if form submitted
               $answer = $_POST["answer"];
-                if(strcasecmp($answer,$solution) == 0 || strcasecmp($answer,$solution1) == 0){//8 if answer is correct
+                if(strcasecmp($answer,$solution) == 0 || strcasecmp($answer,$solution1) == 0 || strcasecmp($answer,$solution2) == 0){//8 if answer is correct
                     $answerStatistic = "Correct";
                        $sql = "update scoreTable SET ".$questionDetail."Solved = 'yes' , points = points + ".$PtsForSection3." , currentTime = NOW() where username = \"".$_SESSION["username"]."\"";
                         if(mysqli_query($conn,$sql)){
@@ -71,7 +74,7 @@ else if($_SESSION["contestEnded"] == "yes")//1 else
                           $buttonTitle = "You have answered correctly.Proceed to the next question.";
                           $points = $points + $PtsForSection3;
                            $buttonColor = "btn btn-success btn-md";
-                          $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" class="btn btn-default btn-md">NEXT</a>';
+                          $nextButton = '&nbsp;&nbsp;<a href="./'.$nextquestionDetail.'.php" style="margin-left:73px;" class="btn btn-default btn-md">NEXT</a>';
                         }
                         else
                           header('Location: ../error.php');
@@ -134,7 +137,7 @@ $endTime = $_SESSION["timeEnd"];
              <div class="col-sm-1"></div>
              <div class="image col-sm-6" style="margin-top:-20px; color: #C0C0C0;">
                Cersei and Jaime mourned over the body of Tywin Lannister
-               <br>and Cersei reminded Jaime once more of the dangerous little monster that had now killed their father. 
+               <br>and Cersei reminded Jaime once more of the dangerous little monster that had now killed their father.
                <br>Who was Cersei referring to?
              </div>
            </div>
@@ -147,7 +150,7 @@ $endTime = $_SESSION["timeEnd"];
            <div class="row">
 <div class="col-sm-2"></div>
 <div class="col-sm-4"><!-- div for input-->
-<input type="answer"  name="answer" id="answer" class="offset-2" placeholder = "enter answer here" size="25" <?php echo $answerDisableVariable;?> required/>
+<input type="answer"  name="answer" id="answer" class="col-sm-offset-1" placeholder = "enter answer here" size="25" <?php echo $answerDisableVariable;?> required/>
  </div>
 </div>
            <br>
@@ -156,7 +159,7 @@ $endTime = $_SESSION["timeEnd"];
              <div class="row">
                <div class="col-sm-2"></div><!-- div for left part-->
                <div class="col-sm-4"><!-- div for submit & next button-->
-       <button id="loginButton" type="submit"  class="<?php echo $buttonColor;?> offset-7" <?php echo $buttonDisableVariable;?> title="<?php echo $buttonTitle;?>"> SUBMIT </button>
+       <button id="loginButton" type="submit" style="margin-left:73px;" class="<?php echo $buttonColor;?>" <?php echo $buttonDisableVariable;?> title="<?php echo $buttonTitle;?>" > SUBMIT </button>
 
                </div>
              </div>
